@@ -13,7 +13,6 @@ import { useState } from 'react';
 import CommonTab from 'components/CommonTab';
 import TagSelect from 'components/TagSelect';
 import { genderList, specialtyList } from 'utils';
-import StarRating from 'components/StartRating';
 import CommonTextArea from 'components/CommonTextArea';
 import CommonBtn from 'components/CommonBtn';
 import ModifyProfileUploader from 'components/ModifyProfileUploader';
@@ -143,8 +142,6 @@ const Mypage = () => {
 					<DelUsrFontContainer>
 						<DelUsrFont>탈퇴하기</DelUsrFont>
 					</DelUsrFontContainer>
-
-					<StarRating />
 				</AsideContent>
 			</FlexContainer>
 			<SpacerBottom size={150} />

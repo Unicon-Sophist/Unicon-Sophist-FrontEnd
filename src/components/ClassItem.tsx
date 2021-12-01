@@ -1,8 +1,5 @@
 import * as React from 'react';
 import book from 'assets/img/book.png';
-import best from 'assets/img/best.png';
-import heart from 'assets/img/heart.png';
-import heartEmpty from 'assets/img/icon-heartempty.png';
 import styled from 'styled-components';
 
 const ClassItem = () => {

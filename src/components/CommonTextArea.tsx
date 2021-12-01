@@ -34,6 +34,7 @@ const TextareaTitle = styled(BodyFont)`
 	color: ${Color.fontBlack};
 	font-size: 14px;
 	margin-bottom: 10px;
+	font-weight: bold;
 `;
 
 const CurrentText = styled.p`

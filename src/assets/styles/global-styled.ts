@@ -100,4 +100,9 @@ export const NoShrinkContainer = styled.div`
 	flex-shrink: 0;
 `;
 
+export const BottomLine = styled.div<{ size?: number; color?: string }>`
+	width: 100%;
+	height: 1px;
+	border-bottom: 1px solid ${(props) => (props.color ? props.color : Color.borderGray)};
+`;
 export default GlobalStyle;

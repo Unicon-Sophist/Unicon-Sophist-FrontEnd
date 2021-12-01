@@ -86,6 +86,8 @@ const TagSelect = (props: PropsTypes) => {
 const SelectTitle = styled(BodyFont)`
 	font-size: 14px;
 	margin-bottom: 10px;
+	color: ${Color.gray4444};
+	font-weight: bold;
 `;
 
 const MaxText = styled.span`

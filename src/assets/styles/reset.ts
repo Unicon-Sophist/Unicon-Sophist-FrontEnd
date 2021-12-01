@@ -188,6 +188,20 @@ img {
   background-color: white;
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #EFBCBB;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
 `;
 
 export default reset;

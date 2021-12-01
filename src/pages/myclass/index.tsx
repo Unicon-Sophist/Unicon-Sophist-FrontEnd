@@ -2,7 +2,6 @@ import { Container, FlexContainer, SpacerBottom } from 'assets/styles/global-sty
 import Aside from 'components/Aside';
 import CommonSwiper from 'components/CommonSwiper';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const MyClass = () => {
