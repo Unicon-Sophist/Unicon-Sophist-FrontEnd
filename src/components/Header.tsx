@@ -41,7 +41,9 @@ const Header: React.FC = () => {
 							<HoverMenuContainer>
 								<HoverMenuItem>
 									<HoverMenuText>
-										<Link to="/mypage">임시 마이페이지</Link>
+										<Link to="/mypage">
+											역사 <HoverMenuDetailText>History</HoverMenuDetailText>
+										</Link>
 									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
@@ -50,7 +52,9 @@ const Header: React.FC = () => {
 									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText>카테고리</HoverMenuText>
+									<HoverMenuText>
+										<Link to="/notice">공지사항</Link>
+									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
 									<HoverMenuText>카테고리</HoverMenuText>
@@ -94,10 +98,20 @@ const HoverMenuText = styled.p`
 	color: ${Color.fontBlack};
 `;
 
+const HoverMenuDetailText = styled.span`
+	margin-left: 10px;
+	font-family: RIDIBatang;
+	color: ${Color.mainPink};
+`;
+
 const HoverMenuItem = styled.li`
 	margin-bottom: 10px;
 	&:hover ${HoverMenuText} {
 		font-weight: bold;
+	}
+
+	&: hover ${HoverMenuDetailText} {
+		border-bottom: 1px solid ${Color.mainPink};
 	}
 `;
 

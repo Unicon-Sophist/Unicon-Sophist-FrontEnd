@@ -1,7 +1,8 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import Color from './color';
-import customSwiperCss from './custom-swiper-css';
+import customSwiperCss from './custom-libary-css';
 import reset from './reset';
+import RIDIBatang from '../fonts/RIDIBatang.woff';
 
 export const Main = styled.div`
 	position: relative;
@@ -9,11 +10,20 @@ export const Main = styled.div`
 
 // 위에서 받은 `normalize`로 기본 css가 초기화 합니다.
 const GlobalStyle = createGlobalStyle`
+@font-face {
+	font-family: RIDIBatang;
+	src: url(${RIDIBatang});
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: RIDIBatang-bold;
+	src: url(${RIDIBatang});
+	font-weight: bold;
+}
 ${reset}
 ${customSwiperCss}
-html {
-	scroll-behavior: smooth;
-}
+html {}
 * {
   font-family: 'Noto Sans KR', sans-serif;
   box-sizing: border-box;
@@ -43,6 +53,14 @@ export const ContainerSmall = styled.div`
 		padding-top: 50px;
 		padding-bottom: 50px;
 	}
+`;
+
+export const TitleFont = styled.h4`
+	font-size: 22px;
+	line-height: 28px;
+	color: ${Color.fontBrown};
+	font-family: RIDIBatang;
+	font-weight: 400;
 `;
 
 export const H1 = styled.h1<{ weight?: string; align?: string }>`
@@ -89,11 +107,17 @@ export const SpacerLeft = styled.div<{ size?: number }>`
 	margin-left: ${(props) => props.size}px;
 `;
 
-export const FlexContainer = styled.div<{ aligin?: string; justify?: string; direction?: string }>`
+export const FlexContainer = styled.div<{
+	aligin?: string;
+	justify?: string;
+	direction?: string;
+	flexWrap?: string;
+}>`
 	display: flex;
 	align-items: ${(props) => (props.aligin ? props.aligin : 'center')};
 	justify-content: ${(props) => (props.justify ? props.justify : 'center')};
-	flex-direction: ${(props) => (props.direction ? props.direction : 'row')}; ;
+	flex-direction: ${(props) => (props.direction ? props.direction : 'row')};
+	flex-wrap: ${(props) => (props.flexWrap ? props.flexWrap : 'nowrap')};
 `;
 
 export const NoShrinkContainer = styled.div`

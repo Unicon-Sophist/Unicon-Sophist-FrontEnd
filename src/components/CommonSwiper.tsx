@@ -9,7 +9,7 @@ SwiperCore.use([Navigation]);
 
 function CommonSwiper() {
 	return (
-		<Swiper spaceBetween={20} slidesPerView={4} navigation>
+		<Swiper spaceBetween={30} slidesPerView={3} navigation>
 			<SwiperSlide>
 				<ClassItem />
 			</SwiperSlide>

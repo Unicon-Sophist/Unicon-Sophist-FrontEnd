@@ -14,7 +14,7 @@ const Main: FC = () => {
 			<input
 				type="button"
 				onClick={() => setFirstLoginPopupVisible(true)}
-				value={'로그인 팝업'}
+				value={'리뷰 작성 팝업'}
 			/>
 
 			<input type="button" onClick={() => setReviewPopupVisible(true)} value={'리뷰 팝업'} />

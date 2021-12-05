@@ -1,6 +1,8 @@
 import Main from 'pages/main';
 import MyClass from 'pages/myclass';
 import Mypage from 'pages/mypage';
+import NoticeList from 'pages/notice';
+import NoticeDetail from 'pages/notice/detail';
 import RoomList from 'pages/room/list';
 import Room from 'pages/room/room';
 import SiginIn from 'pages/signin';
@@ -18,6 +20,8 @@ const routers = () => {
 			<Route path="/sign-up" exact component={SiginUp} />
 			<Route path="/mypage" exact component={Mypage} />
 			<Route path="/mypage/class" exact component={MyClass} />
+			<Route path="/notice" exact component={NoticeList} />
+			<Route path="/notice/:noticeId" exact component={NoticeDetail} />
 		</Switch>
 	);
 };
