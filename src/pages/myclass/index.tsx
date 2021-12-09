@@ -21,6 +21,10 @@ const MyClass = () => {
 
 					<SpacerBottom size={100} />
 
+					<TitleContainer>
+						<TitleFont>내가 개설한 모임</TitleFont>
+					</TitleContainer>
+
 					<FlexContainer justify="flex-start" flexWrap="wrap">
 						<ClassItem hasmargin={true} index={0} />
 						<ClassItem hasmargin={true} index={1} />

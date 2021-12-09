@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import Color from './color';
-import customSwiperCss from './custom-libary-css';
+import customLibaryCss from './custom-libary-css';
 import reset from './reset';
 import RIDIBatang from '../fonts/RIDIBatang.woff';
 
@@ -22,11 +22,12 @@ const GlobalStyle = createGlobalStyle`
 	font-weight: bold;
 }
 ${reset}
-${customSwiperCss}
+${customLibaryCss}
 html {}
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: Noto Sans KR, sans-serif;
   box-sizing: border-box;
+	font-weight: 400;
 }
 a {
 	color: inherit;

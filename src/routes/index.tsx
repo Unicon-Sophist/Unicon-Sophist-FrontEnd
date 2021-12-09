@@ -1,3 +1,5 @@
+import GroupDetail from 'pages/group/Detail';
+import GroupList from 'pages/group';
 import Main from 'pages/main';
 import MyClass from 'pages/myclass';
 import Mypage from 'pages/mypage';
@@ -22,6 +24,8 @@ const routers = () => {
 			<Route path="/mypage/class" exact component={MyClass} />
 			<Route path="/notice" exact component={NoticeList} />
 			<Route path="/notice/:noticeId" exact component={NoticeDetail} />
+			<Route path="/group" exact component={GroupList} />
+			<Route path="/group/:groupId" exact component={GroupDetail} />
 		</Switch>
 	);
 };

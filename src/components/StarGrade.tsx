@@ -3,12 +3,25 @@ import styled from 'styled-components';
 import emptyStar from 'assets/img/icon-startempty.png';
 import fullStar from 'assets/img/icon-startfull.png';
 
-const StartGrade = ({ size }: { size: number }) => {
+const StartGrade = ({ size, starSize }: { size: number; starSize?: number }) => {
 	return (
 		<StartContainer>
 			{[1, 2, 3, 4, 5].map((item) => {
-				if (item <= size) return <Star src={fullStar} key={'starGrade' + item} />;
-				return <Star src={emptyStar} key={'starGrade' + item} />;
+				if (item <= size)
+					return (
+						<Star
+							starSize={starSize ? starSize : 18}
+							src={fullStar}
+							key={'starGrade' + item}
+						/>
+					);
+				return (
+					<Star
+						starSize={starSize ? starSize : 18}
+						src={emptyStar}
+						key={'starGrade' + item}
+					/>
+				);
 			})}
 		</StartContainer>
 	);
@@ -19,6 +32,8 @@ const StartContainer = styled.div`
 	aligin-items: center;
 `;
 
-const Star = styled.img``;
+const Star = styled.img<{ starSize: number }>`
+	width: ${({ starSize }) => starSize + 'px'};
+`;
 
 export default StartGrade;

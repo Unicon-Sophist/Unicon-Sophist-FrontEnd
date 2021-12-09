@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-const Testimonial = () => {
+const GroupList = () => {
 	return <div className=""></div>;
 };
-export default Testimonial;
+
+export default GroupList;

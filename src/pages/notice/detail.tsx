@@ -1,8 +1,11 @@
 import Color from 'assets/styles/color';
-import { BodyFont, Container, SpacerBottom } from 'assets/styles/global-styled';
+import { BodyFont, Container, FlexContainer, SpacerBottom } from 'assets/styles/global-styled';
 import * as React from 'react';
 import styled from 'styled-components';
 import download from 'assets/img/icon-download.png';
+import CommonBtn from 'components/CommonBtn';
+import arr from 'assets/img/arr-bold.png';
+import nextOrange from 'assets/img/next-orange.png';
 
 const NoticeDetail = () => {
 	React.useEffect(() => {
@@ -11,7 +14,7 @@ const NoticeDetail = () => {
 
 	return (
 		<Container>
-			<SpacerBottom size={150} />
+			<SpacerBottom size={100} />
 
 			<NoticeDetailWrap>
 				<NoticeTitlContainer>
@@ -63,11 +66,84 @@ const NoticeDetail = () => {
 						src={'https://cdn.gukjenews.com/news/photo/201904/1101063_874405_114.jpg'}
 					/>
 				</NoticeImageList>
+				<SpacerBottom size={50} />
+
+				<PrevNextNavigationContainer>
+					<PrevContainer>
+						<ArrTitle>
+							<Prev>PREV</Prev>
+							공지사항 이전글의 제목 예시 입니다.
+						</ArrTitle>
+					</PrevContainer>
+
+					<PrevContainer>
+						<ArrTitle>
+							공지사항 이전글의 제목 예시 입니다.
+							<Next>Next</Next>
+						</ArrTitle>
+					</PrevContainer>
+				</PrevNextNavigationContainer>
+				<SpacerBottom size={70} />
+				<FlexContainer>
+					<CommonBtn text={'목록으로'} size={175} />
+				</FlexContainer>
+
 				<SpacerBottom size={150} />
 			</NoticeDetailWrap>
 		</Container>
 	);
 };
+
+const PrevContainer = styled.div``;
+
+const Prev = styled.span`
+	padding-left: 18px;
+	font-weight: bold;
+	margin-right: 10px;
+	position: relative;
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 10px;
+		height: 16px;
+		background-image: url(${arr});
+		left: 0;
+		top: calc(50% - 7px);
+	}
+`;
+
+const Next = styled.span`
+	color: ${Color.subOrange};
+	padding-right: 18px;
+	font-weight: bold;
+	margin-left: 10px;
+	position: relative;
+
+	&:before {
+		content: '';
+		position: absolute;
+		width: 10px;
+		height: 16px;
+		background-image: url(${nextOrange});
+		right: 0;
+		top: calc(50% - 7px);
+	}
+`;
+
+const ArrTitle = styled(BodyFont)`
+	color: ${Color.fontGray};
+`;
+
+const PrevNextNavigationContainer = styled.div`
+	display: flex;
+	aligin-items: center;
+	justify-content: space-between;
+	border-top: 1px solid ${Color.activeGray};
+	border-bottom: 1px solid ${Color.activeGray};
+	padding-top: 15px;
+	padding-bottom: 15px;
+`;
 
 const NoticeDetailWrap = styled.div`
 	border-top: 1px solid ${Color.fontGray};

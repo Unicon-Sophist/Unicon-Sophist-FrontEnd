@@ -43,9 +43,8 @@ const FooterLink = styled(Link)`
 	font-size: 18px;
 	line-height: 40px;
 	color: ${Color.fontGray};
-	transition: 0.3s;
 	&:hover {
-		color: ${Color.mainPink};
+		font-weight: bold;
 	}
 
 	position: relative;

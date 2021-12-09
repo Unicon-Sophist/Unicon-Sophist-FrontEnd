@@ -1,7 +1,6 @@
 import Color from 'assets/styles/color';
 import { BodyFont, BottomLine, FlexContainer, SpacerBottom } from 'assets/styles/global-styled';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import img from './temp-img.png';
 import styled from 'styled-components';
 import CommonTextArea from 'components/CommonTextArea';

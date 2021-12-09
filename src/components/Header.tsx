@@ -40,32 +40,28 @@ const Header: React.FC = () => {
 
 							<HoverMenuContainer>
 								<HoverMenuItem>
-									<HoverMenuText>
-										<Link to="/mypage">
-											역사 <HoverMenuDetailText>History</HoverMenuDetailText>
-										</Link>
+									<HoverMenuText to="/mypage">
+										역사 <HoverMenuDetailText>History</HoverMenuDetailText>
 									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText>
-										<Link to="/mypage/class">내 클래스</Link>
-									</HoverMenuText>
+									<HoverMenuText to="/mypage/class">내 클래스</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText>
-										<Link to="/notice">공지사항</Link>
-									</HoverMenuText>
+									<HoverMenuText to="/notice">공지사항</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText>카테고리</HoverMenuText>
+									<HoverMenuText to="/group">모임 리스트</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText>카테고리</HoverMenuText>
+									<HoverMenuText to="/group/1">모임 상세</HoverMenuText>
 								</HoverMenuItem>
 							</HoverMenuContainer>
 						</GnbMenuCategoryContainer>
 						<GnbMenu>Sophist 소개</GnbMenu>
 						<GnbMenu>고객센터</GnbMenu>
+						<GnbMenu>NEW 모임</GnbMenu>
+						<GnbMenu>BEST 모임</GnbMenu>
 					</GnbContainer>
 
 					<SearchContainer>
@@ -92,7 +88,7 @@ const BottomArrow = styled.img`
 	transform: rotate(0deg);
 `;
 
-const HoverMenuText = styled.p`
+const HoverMenuText = styled(Link)`
 	font-size: 14px;
 	line-height: 24px;
 	color: ${Color.fontBlack};
@@ -208,6 +204,7 @@ const GnbMenuCategory = styled.li`
 `;
 
 const GnbMenu = styled.li`
+	font-family: RIDIBatang;
 	font-size: 18px;
 	line-height: 24px;
 	margin-right: 30px;
@@ -218,7 +215,7 @@ const GnbMenu = styled.li`
 	cursor: pointer;
 	transition: 0.3s;
 	&:hover {
-		color: ${Color.mainPink};
+		font-weight: bold;
 	}
 `;
 
@@ -232,9 +229,8 @@ const SignLink = styled(Link)`
 	line-height: 24px;
 	color: ${Color.fontGray};
 	&:hover {
-		color: ${Color.mainPink};
+		font-weight: bold;
 	}
-	transition: 0.3s;
 `;
 
 const SignMenu = styled.li`

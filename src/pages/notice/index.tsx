@@ -2,7 +2,7 @@ import Color from 'assets/styles/color';
 import { Container, H1, SpacerBottom } from 'assets/styles/global-styled';
 import Paging from 'components/Paging';
 import * as React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const tempNoticeData = {
@@ -58,7 +58,7 @@ const NoticeList = () => {
 	const History = useHistory();
 	return (
 		<Container>
-			<SpacerBottom size={150} />
+			<SpacerBottom size={100} />
 			<H1>공지사항</H1>
 			<SpacerBottom size={60} />
 
