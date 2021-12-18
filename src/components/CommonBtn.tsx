@@ -89,6 +89,11 @@ const BtnContainer = styled.div<{
 		background-image: url(${({ type }) =>
 			type === 'kakao' ? kakaoIcon : type === 'naver' ? naverIcon : 'none'});
 	}
+
+	@media only screen and (max-width: 768px) {
+		height: 45px;
+		border-radius: 5px;
+	}
 `;
 
 const BtnFont = styled.div<{ type?: string }>`
@@ -96,6 +101,11 @@ const BtnFont = styled.div<{ type?: string }>`
 	font-size: 18px;
 	line-height: 25px;
 	color: ${({ type }) => (type === 'kakao' ? '#181600' : 'white')};
+
+	@media only screen and (max-width: 768px) {
+		font-size: 16px;
+		line-height: 20px;
+	}
 `;
 
 export default CommonBtn;

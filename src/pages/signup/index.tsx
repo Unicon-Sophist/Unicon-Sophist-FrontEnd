@@ -1,4 +1,4 @@
-import { ContainerSmall, H1, SpacerBottom } from 'assets/styles/global-styled';
+import { ContainerSmall, H1, OnlyShow, SpacerBottom } from 'assets/styles/global-styled';
 import CommonBtn from 'components/CommonBtn';
 import CommonCheckBox from 'components/CommonCheckBox';
 import CommonInput from 'components/CommonInput';
@@ -7,6 +7,8 @@ import * as React from 'react';
 import { useEffect, useReducer } from 'react';
 import { genderList } from 'utils';
 import { signReducer, initData, ReduceType } from './reducer';
+import mLogo from 'assets/img/m-logo.png';
+import styled from 'styled-components';
 
 const SiginUp = () => {
 	useEffect(() => {}, []);
@@ -39,8 +41,11 @@ const SiginUp = () => {
 
 	return (
 		<ContainerSmall>
-			<H1>회원가입</H1>
-			<SpacerBottom size={80} />
+			<LogoMobile src={mLogo}></LogoMobile>
+			<OnlyShow isMobile={true} display={'block'}>
+				<H1>회원가입</H1>
+			</OnlyShow>
+			<SpacerBottom size={80} mSize={30} />
 			<CommonInput
 				label={'이메일'}
 				value={state.email}
@@ -78,7 +83,7 @@ const SiginUp = () => {
 				type={'password'}
 				error={state.error.passwordConfirmError}
 			/>
-			<SpacerBottom size={70} />
+			<SpacerBottom size={70} mSize={30} />
 
 			<CommonCheckBox
 				label={'에 동의합니다.'}
@@ -91,11 +96,22 @@ const SiginUp = () => {
 				link={'https://www.naver.com'}
 				linkText={'이용약관'}
 			/>
-			<SpacerBottom size={70} />
+			<SpacerBottom size={70} mSize={30} />
 
 			<CommonBtn text={'회원가입'} callback={() => console.log('!!!')} />
 		</ContainerSmall>
 	);
 };
+
+const LogoMobile = styled.img`
+	display: none;
+	text-align: center;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	@media only screen and (max-width: 768px) {
+		display: block;
+	}
+`;
 
 export default SiginUp;

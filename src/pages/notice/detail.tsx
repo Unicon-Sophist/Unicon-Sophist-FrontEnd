@@ -14,12 +14,12 @@ const NoticeDetail = () => {
 
 	return (
 		<Container>
-			<SpacerBottom size={100} />
+			<SpacerBottom size={100} mSize={30} />
 
 			<NoticeDetailWrap>
 				<NoticeTitlContainer>
 					<NoticeTitle>소피스트 앱 런칭 이벤트!!</NoticeTitle>
-					<NoticeDate>2021. 02. 01</NoticeDate>
+					<NoticeDate mSize={14}>2021. 02. 01</NoticeDate>
 				</NoticeTitlContainer>
 
 				<AttachFileContainer>
@@ -70,14 +70,14 @@ const NoticeDetail = () => {
 
 				<PrevNextNavigationContainer>
 					<PrevContainer>
-						<ArrTitle>
+						<ArrTitle mSize={12}>
 							<Prev>PREV</Prev>
 							공지사항 이전글의 제목 예시 입니다.
 						</ArrTitle>
 					</PrevContainer>
 
 					<PrevContainer>
-						<ArrTitle>
+						<ArrTitle mSize={12}>
 							공지사항 이전글의 제목 예시 입니다.
 							<Next>Next</Next>
 						</ArrTitle>
@@ -154,6 +154,12 @@ const NoticeTitle = styled(BodyFont)`
 	font-size: 24px;
 	line-height: 28px;
 	margin-bottom: 15px;
+
+	@media only screen and (max-width: 768px) {
+		font-size: 18px;
+		line-height: 24px;
+		margin-bottom: 10px;
+	}
 `;
 
 const NoticeDate = styled(BodyFont)`
@@ -162,6 +168,9 @@ const NoticeDate = styled(BodyFont)`
 `;
 const NoticeTitlContainer = styled.div`
 	margin-bottom: 20px;
+	@media only screen and (max-width: 768px) {
+		margin-bottom: 10px;
+	}
 `;
 const NoticeContentCotainer = styled.div`
 	margin-bottom: 35px;

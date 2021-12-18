@@ -58,9 +58,9 @@ const NoticeList = () => {
 	const History = useHistory();
 	return (
 		<Container>
-			<SpacerBottom size={100} />
+			<SpacerBottom size={100} mSize={50} />
 			<H1>공지사항</H1>
-			<SpacerBottom size={60} />
+			<SpacerBottom size={60} mSize={30} />
 
 			<CommonTable>
 				<Theader>
@@ -122,6 +122,12 @@ const Th = styled.th<{ aligin?: string }>`
 	padding-bottom: 20px;
 	font-weight: normal;
 	text-align: ${({ aligin }) => (aligin ? aligin : 'center')};
+
+	@media only screen and (max-width: 768px) {
+		font-size: 16px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
 `;
 const Tbody = styled.tbody``;
 
@@ -131,6 +137,10 @@ const Td = styled.td<{ isFixed?: boolean; aligin?: string; color?: string }>`
 	padding-bottom: 20px;
 	color: ${({ isFixed, color }) => (isFixed ? Color.fontPink : color ? color : Color.fontBlack)};
 	text-align: ${({ aligin }) => (aligin ? aligin : 'left')};
+
+	@media only screen and (max-width: 768px) {
+		font-size: 12px;
+	}
 `;
 
 const Tr = styled.tr<{ isFixed?: boolean }>`
@@ -147,6 +157,16 @@ const Tr = styled.tr<{ isFixed?: boolean }>`
 	${Td}:first-child {
 		padding-left: 30px;
 	}
+
+	@media only screen and (max-width: 768px) {
+		${Td}:last-child {
+			padding-right: 5px;
+		}
+		${Td}:first-child {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+	}
 `;
 
 const Theader = styled.thead`
@@ -160,6 +180,15 @@ const Theader = styled.thead`
 		border: none;
 	}
 	border-bottom: 1px solid ${Color.gray6666};
+
+	@media only screen and (max-width: 768px) {
+		${Th}:last-child {
+			padding-right: 10px;
+		}
+		${Th}:first-child {
+			padding-left: 10px;
+		}
+	}
 `;
 
 export default NoticeList;

@@ -1,32 +1,47 @@
 import Color from 'assets/styles/color';
-import { ContainerSmall, H1, SpacerBottom } from 'assets/styles/global-styled';
+import { ContainerSmall, H1, OnlyShow, SpacerBottom } from 'assets/styles/global-styled';
 import CommonBtn from 'components/CommonBtn';
 import CommonInput from 'components/CommonInput';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import mLogo from 'assets/img/m-logo.png';
+import Api from 'api';
 const SiginIn = () => {
 	useEffect(() => {}, []);
-
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+	const login = async () => {
+		try {
+			await Api.post('login', {
+				email,
+				password,
+			});
+			console.log('로그인 성공');
+		} catch (error: any) {
+			console.log(error);
+		}
+	};
 
+	const kakaoLogin = async () => {};
 	return (
 		<ContainerSmall>
-			<H1>로그인</H1>
-			<SpacerBottom size={80} />
+			<LogoMobile src={mLogo}></LogoMobile>
+			<OnlyShow isMobile={true} display={'block'}>
+				<H1>로그인</H1>
+			</OnlyShow>
+			<SpacerBottom size={80} mSize={30} />
 			<CommonInput label={'이메일'} value={email} setValue={setEmail} type={'text'} />
-			<SpacerBottom size={50} />
+			<SpacerBottom size={50} mSize={30} />
 			<CommonInput
 				label={'비밀번호'}
 				value={password}
 				setValue={setPassword}
 				type={'password'}
 			/>
-			<SpacerBottom size={50} />
-			<CommonBtn text={'로그인'} callback={() => console.log('!!!')} />
+			<SpacerBottom size={50} mSize={30} />
+			<CommonBtn text={'로그인'} callback={login} />
 			<SpacerBottom size={24} />
 			<LoginMenuContainer>
 				<SignMenu>
@@ -46,6 +61,16 @@ const SiginIn = () => {
 	);
 };
 
+const LogoMobile = styled.img`
+	display: none;
+	text-align: center;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	@media only screen and (max-width: 768px) {
+		display: block;
+	}
+`;
 const OrLine = styled.div`
 	text-align: center;
 	position: relative;
