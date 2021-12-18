@@ -1,7 +1,7 @@
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from 'store';
@@ -13,30 +13,59 @@ import GlobalStyle from 'assets/styles/global-styled';
 const rootElement = document.getElementById('root');
 const persistor = persistStore(store);
 
+const isEletron = process.env.REACT_APP_IS_ELECTRON === 'true';
 if (rootElement) {
 	if (rootElement.hasChildNodes()) {
-		hydrate(
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<Router basename={process.env.PUBLIC_URL}>
-						<GlobalStyle />
-						<App />
-					</Router>
-				</PersistGate>
-			</Provider>,
-			rootElement,
-		);
+		if (isEletron) {
+			hydrate(
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<HashRouter basename={process.env.PUBLIC_URL}>
+							<GlobalStyle />
+							<App />
+						</HashRouter>
+					</PersistGate>
+				</Provider>,
+				rootElement,
+			);
+		} else {
+			hydrate(
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<BrowserRouter basename={process.env.PUBLIC_URL}>
+							<GlobalStyle />
+							<App />
+						</BrowserRouter>
+					</PersistGate>
+				</Provider>,
+				rootElement,
+			);
+		}
 	} else {
-		render(
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<Router basename={process.env.PUBLIC_URL}>
-						<GlobalStyle />
-						<App />
-					</Router>
-				</PersistGate>
-			</Provider>,
-			rootElement,
-		);
+		if (isEletron) {
+			render(
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<HashRouter basename={process.env.PUBLIC_URL}>
+							<GlobalStyle />
+							<App />
+						</HashRouter>
+					</PersistGate>
+				</Provider>,
+				rootElement,
+			);
+		} else {
+			render(
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<BrowserRouter basename={process.env.PUBLIC_URL}>
+							<GlobalStyle />
+							<App />
+						</BrowserRouter>
+					</PersistGate>
+				</Provider>,
+				rootElement,
+			);
+		}
 	}
 }

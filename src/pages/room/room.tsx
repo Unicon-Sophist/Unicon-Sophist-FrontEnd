@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import { useRef, useCallback, useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { CONFIG, SOCKET_SERVER_URL } from 'utils';
+import { Container } from 'assets/styles/global-styled';
 
 interface MatchParams {
 	id: string;
@@ -50,10 +51,6 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 					candidateSendID: socketRef.current.id,
 					candidateReceiveID: socketID,
 				});
-			};
-
-			pc.oniceconnectionstatechange = (e) => {
-				console.log(e);
 			};
 
 			pc.ontrack = (e) => {
@@ -190,7 +187,7 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 	}, []);
 
 	return (
-		<div>
+		<Container>
 			<video
 				playsInline
 				style={{
@@ -206,7 +203,7 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 			{users.map((user, index) => (
 				<Video key={index} email={user.email} stream={user.stream} />
 			))}
-		</div>
+		</Container>
 	);
 }
 

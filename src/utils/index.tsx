@@ -2,7 +2,7 @@ import cat from 'assets/img/cat.png';
 
 /* eslint-disable */
 // export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com/';\
-export const SOCKET_SERVER_URL = 'http://localhost:8080';
+export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com';
 export const CONFIG = {
 	iceServers: [
 		{
