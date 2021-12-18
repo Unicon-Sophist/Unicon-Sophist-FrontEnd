@@ -1,3 +1,4 @@
+import * as React from 'react';
 import GroupDetail from 'pages/group/Detail';
 import GroupList from 'pages/group';
 import Main from 'pages/main';
@@ -9,7 +10,7 @@ import RoomList from 'pages/room/list';
 import Room from 'pages/room/room';
 import SiginIn from 'pages/signin';
 import SiginUp from 'pages/signup';
-import * as React from 'react';
+import KakaoLogin from 'pages/signin/KakaoLogin';
 import { Route, Switch } from 'react-router-dom';
 
 const routers = () => {
@@ -26,6 +27,7 @@ const routers = () => {
 			<Route path="/notice/:noticeId" exact component={NoticeDetail} />
 			<Route path="/group" exact component={GroupList} />
 			<Route path="/group/:groupId" exact component={GroupDetail} />
+			<Route path="/login/kakao" exact component={KakaoLogin} />
 		</Switch>
 	);
 };
