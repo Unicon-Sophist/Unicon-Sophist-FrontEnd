@@ -45,8 +45,8 @@ a {
 export const Container = styled.div`
 	max-width: 1470px;
 	margin: auto;
-	padding-right: 15px;
-	padding-left: 15px;
+	padding-right: 10px;
+	padding-left: 10px;
 `;
 
 export const ContainerSmall = styled.div`
@@ -64,9 +64,9 @@ export const ContainerSmall = styled.div`
 	}
 `;
 
-export const TitleFont = styled.h4`
-	font-size: 22px;
-	line-height: 28px;
+export const TitleFont = styled.h4<{ isBig?: boolean }>`
+	font-size: ${({ isBig }) => (isBig ? '34px' : '22px')};
+	line-height: ${({ isBig }) => (isBig ? '42px' : '28px')};
 	color: ${Color.fontBrown};
 	font-family: RIDIBatang;
 	font-weight: 400;

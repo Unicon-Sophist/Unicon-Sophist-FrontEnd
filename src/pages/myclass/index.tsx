@@ -17,7 +17,7 @@ const MyClass = () => {
 						<TitleFont>내가 개설한 모임</TitleFont>
 					</TitleContainer>
 
-					<CommonSwiper />
+					<CommonSwiper Item={<ClassItem />} />
 
 					<SpacerBottom size={100} />
 

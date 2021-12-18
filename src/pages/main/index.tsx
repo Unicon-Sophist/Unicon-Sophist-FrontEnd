@@ -1,36 +1,88 @@
-import CommonModal from 'components/CommonModal';
 import { FC } from 'react';
 import * as React from 'react';
-import { useState } from 'react';
-import FirstLoginPopup from 'pages/popup/FirstLoginPopup';
-import ReviewPopup from 'pages/popup/ReviewPopup';
+import { BodyFont, Container, SpacerBottom, TitleFont } from 'assets/styles/global-styled';
+import styled from 'styled-components';
+import MainTopSlider from './MainTopSlider';
+import Color from 'assets/styles/color';
+import CategorSlider from './CategorySlider';
+import CommonSwiper from 'components/CommonSwiper';
+import ClassItem from 'components/ClassItem';
+import { isMobileSize } from 'utils';
 
 const Main: FC = () => {
-	const [firstLoginPopupVisible, setFirstLoginPopupVisible] = useState<boolean>(false);
-	const [reviewPopupVisible, setReviewPopupVisible] = useState<boolean>(false);
-
+	console.log(isMobileSize);
 	return (
-		<main className="">
-			<input
-				type="button"
-				onClick={() => setFirstLoginPopupVisible(true)}
-				value={'리뷰 작성 팝업'}
-			/>
+		<main>
+			<MainTopSlider />
+			<SpacerBottom size={200} mSize={100} />
 
-			<input type="button" onClick={() => setReviewPopupVisible(true)} value={'리뷰 팝업'} />
+			<Container>
+				<TitleFont isBig={true}>Categories</TitleFont>
+				<SpacerBottom size={20} />
+				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={30} />
+				<CategorSlider />
+			</Container>
 
-			<CommonModal
-				visible={firstLoginPopupVisible}
-				onClose={() => setFirstLoginPopupVisible(false)}
-			>
-				<FirstLoginPopup />
-			</CommonModal>
+			<SpacerBottom size={200} mSize={100} />
 
-			<CommonModal visible={reviewPopupVisible} onClose={() => setReviewPopupVisible(false)}>
-				<ReviewPopup />
-			</CommonModal>
+			<Container>
+				<TitleFont isBig={true}>BEST Meeting</TitleFont>
+				<SpacerBottom size={20} />
+				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={30} />
+			</Container>
+
+			<PaddingContainer>
+				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+			</PaddingContainer>
+
+			<SpacerBottom size={300} mSize={100} />
+
+			<Container>
+				<TitleFont isBig={true}>New Meeting</TitleFont>
+				<SpacerBottom size={20} />
+				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={30} />
+				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+			</Container>
+
+			<SpacerBottom size={100} mSize={100} />
+
+			<Container>
+				<TitleFont isBig={true}>New Meeting</TitleFont>
+				<SpacerBottom size={20} />
+				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={30} />
+				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+			</Container>
+
+			<SpacerBottom size={100} mSize={100} />
+
+			<Container>
+				<TitleFont isBig={true}>New Meeting</TitleFont>
+				<SpacerBottom size={20} />
+				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={30} />
+				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+			</Container>
+
+			<SpacerBottom size={200} />
 		</main>
 	);
 };
 
 export default Main;
+
+const TitleDesc = styled(BodyFont)`
+	color: ${Color.fontGray};
+`;
+const PaddingContainer = styled.div`
+	padding-left: 40px;
+	padding-right: 40px;
+
+	@media only screen and (max-width: 768px) {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+`;

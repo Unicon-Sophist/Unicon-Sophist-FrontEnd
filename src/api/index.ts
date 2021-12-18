@@ -1,6 +1,9 @@
 import axios from 'axios';
+import store from '../store';
+import { addAsyncCountValue, minusAsyncCountValue } from 'store/spinner-store';
+const BASE_URL = 'http://localhost:8080/sophia/';
 
-const BASE_URL = 'http://localhost:8080/';
+const { dispatch } = store;
 
 const Axios = axios.create({
 	baseURL: BASE_URL,
@@ -11,6 +14,7 @@ const Axios = axios.create({
 // axios 함수 호출 전 실행되는 함수
 Axios.interceptors.request.use(
 	(config) => {
+		dispatch(addAsyncCountValue());
 		return config;
 	},
 	(error) => Promise.reject(error),
@@ -20,9 +24,11 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
 	(response) => {
 		// 로딩 창을 끔
+		dispatch(minusAsyncCountValue());
 		return response;
 	},
 	(error) => {
+		dispatch(minusAsyncCountValue());
 		return Promise.reject(error);
 	},
 );

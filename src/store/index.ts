@@ -45,3 +45,7 @@ const store = configureStore({
 export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
+
+declare module 'react-redux' {
+	interface DefaultRootState extends RootState {}
+}

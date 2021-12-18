@@ -2,6 +2,7 @@ const Color = {
 	mainBtnGradient: 'linear-gradient(180deg, #efbcbb 0%, #e59998 100%)',
 	fontBlack: '#222222',
 	mainPink: '#EFBCBB',
+	pinkFontColor: '#C69D94',
 	subOrange: '#F7CCA6',
 	fontGray: '#888888',
 	borderGray: '#EEEEEE',

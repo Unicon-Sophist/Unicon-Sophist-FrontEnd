@@ -1,3 +1,5 @@
+import cat from 'assets/img/cat.png';
+
 /* eslint-disable */
 // export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com/';\
 export const SOCKET_SERVER_URL = 'http://localhost:8080';
@@ -11,10 +13,12 @@ export const CONFIG = {
 
 // 비밀번호 정규식
 export const regCheckPassword = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/; // eslint-disable-line
+
 //eslint-disable-line
 // 이메일 정규식
 export const regCheckEmail =
 	/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{1,10}$/i; // eslint-disable-line
+
 /* eslint-disable-next-line */
 // 특수문자 확인
 export const checkSpecial = (str: string) => {
@@ -25,6 +29,7 @@ export const checkSpecial = (str: string) => {
 		return false;
 	}
 };
+
 /* eslint-disable-next-line */
 // 대소문자 확인
 export const checkLetter = (str: string) => {
@@ -35,6 +40,8 @@ export const checkLetter = (str: string) => {
 		return false;
 	}
 };
+
+// 모바일 체크
 export const isMobile = () => {
 	const UserAgent = navigator.userAgent;
 
@@ -49,8 +56,12 @@ export const isMobile = () => {
 		return true;
 	}
 };
+
+export const isMobileSize = window.innerWidth < 768;
+
 //eslint-disable-line
 export const currentRoute = document.location.href.split(document.location.origin)[1];
+
 //eslint-disable-line
 export const checkMobile = () => {
 	const UA = navigator.userAgent.toLowerCase(); //userAgent 값 얻기
@@ -76,4 +87,12 @@ export const specialtyList = [
 	{ value: 'person', label: '인문' },
 	{ value: 'sopi', label: '철학' },
 	{ value: 'engineering', label: '공학' },
+];
+
+export const categoryList = [
+	{ title: '역사', img: cat },
+	{ title: '철학', img: cat },
+	{ title: '문학', img: cat },
+	{ title: '사회', img: cat },
+	{ title: '공학', img: cat },
 ];

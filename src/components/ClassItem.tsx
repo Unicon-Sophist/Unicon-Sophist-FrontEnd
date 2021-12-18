@@ -8,10 +8,18 @@ import heartFull from 'assets/img/icon-heart-full.png';
 import heartEmpty from 'assets/img/icon-heart-empty.png';
 import { BodyFont, FlexContainer } from 'assets/styles/global-styled';
 
-const ClassItem = ({ hasmargin, index = 0 }: { hasmargin?: boolean; index?: number }) => {
+const ClassItem = ({
+	hasmargin,
+	index = 0,
+	size,
+}: {
+	hasmargin?: boolean;
+	index?: number;
+	size?: number;
+}) => {
 	return (
 		<ClassItemContainer hasmargin={hasmargin} index={index}>
-			<ClassImgContainer background={book}>
+			<ClassImgContainer background={book} size={size}>
 				{Math.floor((Math.random() * 100) % 2) === 0 && (
 					<IsEnd>
 						<EndTitle>마감되었습니다!</EndTitle>
@@ -60,7 +68,7 @@ const IsBestImg = styled.img`
 	z-index: 3;
 `;
 
-const ClassImgContainer = styled.div<{ background: any }>`
+const ClassImgContainer = styled.div<{ background: any; size?: number }>`
 	position: relative;
 	padding-top: 20px;
 	margin-bottom: 15px;
@@ -70,6 +78,7 @@ const ClassImgContainer = styled.div<{ background: any }>`
 	background-size: cover;
 	background-position: center center;
 	border-radius: 20px;
+	height: ${({ size }) => (size ? size + 'px' : '200px')};
 `;
 
 const ClassItemContainer = styled.div<{ hasmargin?: boolean; index: number }>`
@@ -87,6 +96,11 @@ const TagWrap = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 `;
 
 const TitleText = styled(BodyFont)`
@@ -121,11 +135,16 @@ const TagContainer = styled.div`
 	flex-wrap: wrap;
 	${Tag}:last-child {
 		margin-right: 0px;
+		margin-bottom: 5px;
 	}
 `;
 
 const TitleContainer = styled(FlexContainer)`
 	margin-bottom: 5px;
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
 `;
 
 const IsEnd = styled.div`
@@ -144,5 +163,8 @@ const IsEnd = styled.div`
 const EndTitle = styled.p`
 	color: white;
 	font-size: 16px;
+	@media only screen and (max-width: 768px) {
+		font-size: 12px;
+	}
 `;
 export default ClassItem;

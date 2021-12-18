@@ -3,46 +3,28 @@ import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import * as React from 'react';
-import ClassItem from './ClassItem';
+import { isMobileSize } from 'utils';
 
 SwiperCore.use([Navigation]);
 
-function CommonSwiper() {
+function CommonSwiper({ Item, viewSize }: { Item: JSX.Element; viewSize?: number }) {
 	return (
-		<Swiper spaceBetween={30} slidesPerView={3} navigation>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
-			<SwiperSlide>
-				<ClassItem />
-			</SwiperSlide>
+		<Swiper
+			spaceBetween={isMobileSize ? 10 : 30}
+			slidesPerView={viewSize ? viewSize : 3}
+			navigation
+		>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
+			<SwiperSlide>{Item}</SwiperSlide>
 		</Swiper>
 	);
 }
