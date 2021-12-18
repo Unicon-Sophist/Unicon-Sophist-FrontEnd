@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '../store';
 import { addAsyncCountValue, minusAsyncCountValue } from 'store/spinner-store';
-const BASE_URL = 'http://localhost:8080/sophia/';
+const BASE_URL = 'http://localhost:8000/';
 
 const { dispatch } = store;
 
