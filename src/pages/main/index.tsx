@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import * as React from 'react';
 import { BodyFont, Container, SpacerBottom, TitleFont } from 'assets/styles/global-styled';
 import styled from 'styled-components';
@@ -9,8 +8,7 @@ import CommonSwiper from 'components/CommonSwiper';
 import ClassItem from 'components/ClassItem';
 import { isMobileSize } from 'utils';
 
-const Main: FC = () => {
-	console.log(isMobileSize);
+const Main = () => {
 	return (
 		<main>
 			<MainTopSlider />
@@ -18,8 +16,10 @@ const Main: FC = () => {
 
 			<Container>
 				<TitleFont isBig={true}>Categories</TitleFont>
-				<SpacerBottom size={20} />
-				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={20} mSize={5} />
+				<TitleDesc mSize={14}>
+					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
+				</TitleDesc>
 				<SpacerBottom size={30} />
 				<CategorSlider />
 			</Container>
@@ -28,8 +28,10 @@ const Main: FC = () => {
 
 			<Container>
 				<TitleFont isBig={true}>BEST Meeting</TitleFont>
-				<SpacerBottom size={20} />
-				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={20} mSize={5} />
+				<TitleDesc mSize={14}>
+					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
+				</TitleDesc>
 				<SpacerBottom size={30} />
 			</Container>
 
@@ -41,8 +43,10 @@ const Main: FC = () => {
 
 			<Container>
 				<TitleFont isBig={true}>New Meeting</TitleFont>
-				<SpacerBottom size={20} />
-				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={20} mSize={5} />
+				<TitleDesc mSize={14}>
+					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
+				</TitleDesc>
 				<SpacerBottom size={30} />
 				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
 			</Container>
@@ -51,8 +55,10 @@ const Main: FC = () => {
 
 			<Container>
 				<TitleFont isBig={true}>New Meeting</TitleFont>
-				<SpacerBottom size={20} />
-				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={20} mSize={5} />
+				<TitleDesc mSize={14}>
+					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
+				</TitleDesc>
 				<SpacerBottom size={30} />
 				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
 			</Container>
@@ -61,13 +67,15 @@ const Main: FC = () => {
 
 			<Container>
 				<TitleFont isBig={true}>New Meeting</TitleFont>
-				<SpacerBottom size={20} />
-				<TitleDesc>소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.</TitleDesc>
+				<SpacerBottom size={20} mSize={5} />
+				<TitleDesc mSize={14}>
+					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
+				</TitleDesc>
 				<SpacerBottom size={30} />
 				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
 			</Container>
 
-			<SpacerBottom size={200} />
+			<SpacerBottom size={200} mSize={150} />
 		</main>
 	);
 };

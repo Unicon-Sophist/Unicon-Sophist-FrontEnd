@@ -82,6 +82,10 @@ const FooterWrap = styled.footer`
 	padding-top: 40px;
 	padding-bottom: 40px;
 	background-color: ${Color.grayF7F7F7};
+
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
 `;
 
 const FooterContent = styled.div`

@@ -60,7 +60,7 @@ const Mypage = () => {
 
 	return (
 		<Container>
-			<SpacerBottom size={150} />
+			<SpacerBottom size={150} mSize={50} />
 			<FlexContainer aligin="flex-start" justify="flex-start">
 				<Aside />
 				<AsideContent>
@@ -71,9 +71,9 @@ const Mypage = () => {
 					<BodyFont size={16} lineHeight={36} color={Color.activeGray}>
 						나의 프로필에서 프로필정보를 확인하고 수정해보세요!
 					</BodyFont>
-					<SpacerBottom size={60} />
+					<SpacerBottom size={60} mSize={30} />
 					<CommonTab tabList={myPageTabList} activeTab={''} setActiveTab={() => {}} />
-					<SpacerBottom size={70} />
+					<SpacerBottom size={70} mSize={30} />
 					<div ref={modMyInfoRef}>
 						<BodyFont>나의 정보 수정</BodyFont>
 					</div>
@@ -108,7 +108,7 @@ const Mypage = () => {
 							/>
 						</ModifyProfileContent>
 					</ModifyProfileContainer>
-					<SpacerBottom size={90} />
+					<SpacerBottom size={90} mSize={30} />
 					<div ref={modDetailProfileRef}>
 						<CommonTextArea
 							placeholder={'자기 소개를 작성해주세요!'}
@@ -135,7 +135,7 @@ const Mypage = () => {
 						max={3}
 					/>
 
-					<SpacerBottom size={70} />
+					<SpacerBottom size={70} mSize={30} />
 
 					<CommonBtn text={'프로필 정보 변경'} />
 					<SpacerBottom size={20} />
@@ -165,16 +165,25 @@ const DelUsrFont = styled(BodyFont)`
 const ModifyProfileContainer = styled.div`
 	display: flex;
 	aligin-items: flex-start;
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 const AsideContent = styled.div`
 	width: 100%;
 	margin-left: 135px;
+	@media only screen and (max-width: 768px) {
+		margin-left: 0px;
+	}
 `;
 
 const ModifyProfileContent = styled.div`
 	width: 100%;
 	margin-left: 85px;
+	@media only screen and (max-width: 768px) {
+		margin-left: 0px;
+	}
 `;
 
 export default Mypage;

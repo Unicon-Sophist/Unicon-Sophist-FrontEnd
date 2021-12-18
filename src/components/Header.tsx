@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from 'assets/img/logo.png';
 import searchIcon from 'assets/img/search-icon.png';
@@ -7,8 +8,19 @@ import arrBotton from 'assets/img/arr-bottom.png';
 import sqareGroup from 'assets/img/sqare-group.png';
 import Color from 'assets/styles/color';
 import { Container } from 'assets/styles/global-styled';
+import mLogo from 'assets/img/m-logo.png';
+import menu from 'assets/img/menu.png';
+import defaultProfile from 'assets/img/default-profile.png';
 
-const Header: React.FC = () => {
+const isLogin = false;
+const Header = () => {
+	const [hoverMenuActive, setHoverMenuActive] = useState(false);
+	let location = useLocation();
+
+	useEffect(() => {
+		setHoverMenuActive(false);
+	}, [location]);
+
 	return (
 		<HeaderWrap>
 			<HeaderContainer>
@@ -27,6 +39,29 @@ const Header: React.FC = () => {
 							<SignLink to="/sign-up">회원가입</SignLink>
 						</SignMenu>
 					</LoginMenuContainer>
+
+					{isLogin && (
+						<ProfileContainer>
+							<ProfileText>알림</ProfileText>
+							<ProfileText>나의 모임</ProfileText>
+							<ProfileImg
+								src={defaultProfile}
+								onClick={() => setHoverMenuActive(!hoverMenuActive)}
+							/>
+
+							<ProfileHoverMenu isActive={hoverMenuActive}>
+								<HoverMenuItem>
+									<HoverMenuText to="/mypage">프로필 관리</HoverMenuText>
+								</HoverMenuItem>
+								<HoverMenuItem>
+									<HoverMenuText to="/mypage">알림설정</HoverMenuText>
+								</HoverMenuItem>
+								<HoverMenuItem>
+									<HoverMenuText to="/mypage">로그아웃</HoverMenuText>
+								</HoverMenuItem>
+							</ProfileHoverMenu>
+						</ProfileContainer>
+					)}
 				</HeaderContent>
 
 				<HeaderContent>
@@ -71,22 +106,16 @@ const Header: React.FC = () => {
 				</HeaderContent>
 			</HeaderContainer>
 
-			<HeaderContainerMobile></HeaderContainerMobile>
+			<HeaderContainerMobile>
+				<Link to="/">
+					<MobileLogo src={mLogo} />
+				</Link>
+
+				<HambugerMenu src={menu} />
+			</HeaderContainerMobile>
 		</HeaderWrap>
 	);
 };
-
-const SqareImag = styled.img`
-	margin-right: 10px;
-	transition: 0.9s;
-	transform: rotate(0deg);
-`;
-
-const BottomArrow = styled.img`
-	margin-left: 30px;
-	transition: 0.6s;
-	transform: rotate(0deg);
-`;
 
 const HoverMenuText = styled(Link)`
 	font-size: 14px;
@@ -109,6 +138,65 @@ const HoverMenuItem = styled.li`
 	&: hover ${HoverMenuDetailText} {
 		border-bottom: 1px solid ${Color.mainPink};
 	}
+`;
+
+const ProfileHoverMenu = styled.ul<{ isActive: boolean }>`
+	position: absolute;
+	background: #ffffff;
+	box-shadow: 6px 7px 10px rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 20px;
+	transform: scale(${({ isActive }) => (isActive ? 1 : 0)});
+	opacity: scale(${({ isActive }) => (isActive ? 1 : 0)});
+	z-index: 100;
+	transition: opacity 0.3s;
+	top: 60px;
+	right: 0px;
+	${HoverMenuItem}:last-child {
+		margin-bottom: 0;
+	}
+`;
+
+const ProfileText = styled.p`
+	font-size: 16px;
+	line-height: 24px;
+	margin-right: 20px;
+	cursor: pointer;
+	&:hover {
+		font-weight: bold;
+	}
+`;
+
+const ProfileContainer = styled.div`
+	display: flex;
+	position: relative;
+	align-items: center;
+`;
+
+const ProfileImg = styled.img`
+	width: 55px;
+	height: 55px;
+	cursor: pointer;
+`;
+
+const HambugerMenu = styled.img`
+	height: 25px;
+`;
+
+const MobileLogo = styled.img`
+	height: 40px;
+`;
+
+const SqareImag = styled.img`
+	margin-right: 10px;
+	transition: 0.9s;
+	transform: rotate(0deg);
+`;
+
+const BottomArrow = styled.img`
+	margin-left: 30px;
+	transition: 0.6s;
+	transform: rotate(0deg);
 `;
 
 const HoverMenuContainer = styled.ul`
@@ -282,5 +370,15 @@ const HeaderContainer = styled(Container)`
 	}
 `;
 
-const HeaderContainerMobile = styled.div``;
+const HeaderContainerMobile = styled.div`
+	display: none;
+
+	@media only screen and (max-width: 768px) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+`;
 export default Header;

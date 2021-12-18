@@ -12,16 +12,16 @@ const ModifyProfileUploader = () => {
 			<InputFileContainer
 				onMouseUpCapture={(e) => (inputRef.current ? inputRef.current.click() : '')}
 			>
-				<ProfileImg src={defaultProfile} alt="defaultProfile" />
+				<ProfileImgContainer>
+					<ProfileImg src={defaultProfile} alt="defaultProfile" />
+				</ProfileImgContainer>
 			</InputFileContainer>
 			<InputFile type={'file'} ref={inputRef} onChange={uploadImage} />
 		</InputFileWrap>
 	);
 };
 
-const InputFileContainer = styled.div`
-	display: flex;
-	justify-content: center;
+const ProfileImgContainer = styled.div`
 	position: relative;
 	&:after {
 		position: absolute;
@@ -39,14 +39,24 @@ const InputFileContainer = styled.div`
 		border-radius: 50%;
 	}
 `;
+const InputFileContainer = styled.div`
+	display: flex;
+	justify-content: center;
+`;
 
 const ProfileImg = styled.img`
 	border-radius: 50%;
 	width: 100px;
 	height: 100px;
+	position: relative;
 `;
 const InputFile = styled.input`
 	display: none;
 `;
-const InputFileWrap = styled.div``;
+const InputFileWrap = styled.div`
+	margin-bottom: 0;
+	@media only screen and (max-width: 768px) {
+		margin-bottom: 50px;
+	}
+`;
 export default ModifyProfileUploader;

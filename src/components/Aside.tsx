@@ -125,6 +125,10 @@ const MyInfoListContainer = styled.ul`
 const AsideContainer = styled.div`
 	width: 320px;
 	flex-shrink: 0;
+
+	@media only screen and (max-width: 768px) {
+		display: none;
+	}
 `;
 
 const ArrFontContainer = styled(Link)`

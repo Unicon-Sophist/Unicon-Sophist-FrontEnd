@@ -76,6 +76,7 @@ const NoticeList = () => {
 						if (i.isFixed)
 							return (
 								<Tr
+									key={index + 'notice'}
 									isFixed={i.isFixed}
 									onClick={() => {
 										History.push(`/notice/${i.id}`);
@@ -90,6 +91,7 @@ const NoticeList = () => {
 							);
 						return (
 							<Tr
+								key={index + 'notice'}
 								isFixed={i.isFixed}
 								onClick={() => {
 									History.push(`/notice/${i.id}`);

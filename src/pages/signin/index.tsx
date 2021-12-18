@@ -24,7 +24,6 @@ const SiginIn = () => {
 		}
 	};
 
-	const kakaoLogin = async () => {};
 	return (
 		<ContainerSmall>
 			<LogoMobile src={mLogo}></LogoMobile>

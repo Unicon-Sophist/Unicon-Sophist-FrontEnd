@@ -70,6 +70,11 @@ export const TitleFont = styled.h4<{ isBig?: boolean }>`
 	color: ${Color.fontBrown};
 	font-family: RIDIBatang;
 	font-weight: 400;
+
+	@media only screen and (max-width: 768px) {
+		font-size: ${({ isBig }) => (isBig ? '24px' : '32px')};
+		line-height: ${({ isBig }) => (isBig ? '28px' : '36px')};
+	}
 `;
 
 export const H1 = styled.h1<{ weight?: string; align?: string }>`
@@ -113,11 +118,15 @@ export const BodyFont = styled.p<{
 	mLineHeight?: number;
 	fontWeight?: number;
 	color?: string;
+	fontRIDIBatang?: boolean;
 }>`
 	font-size: ${(props) => (props.size ? props.size + 'px' : '16px')};
 	line-height: ${(props) => (props.lineHeight ? props.lineHeight + 'px' : '21px')};
 	font-weight: ${(props) => (props.fontWeight ? props.fontWeight + 'px' : '400')};
 	color: ${(props) => (props.color ? props.color : Color.fontBlack)};
+
+	font-family: ${({ fontRIDIBatang }) =>
+		fontRIDIBatang ? 'RIDIBatang' : 'Noto Sans KR,sans-serif'};
 
 	@media only screen and (max-width: 768px) {
 		font-size: ${(props) => (props.mSize ? props.mSize + 'px' : props.size + 'px')};
