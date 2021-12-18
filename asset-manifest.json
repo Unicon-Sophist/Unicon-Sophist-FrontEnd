@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.js": "/sophia/static/js/main.84d40553.chunk.js",
+    "main.js.map": "/sophia/static/js/main.84d40553.chunk.js.map",
+    "runtime-main.js": "/sophia/static/js/runtime-main.2c3ead8e.js",
+    "runtime-main.js.map": "/sophia/static/js/runtime-main.2c3ead8e.js.map",
+    "static/css/2.ac5b1653.chunk.css": "/sophia/static/css/2.ac5b1653.chunk.css",
+    "static/js/2.e5754277.chunk.js": "/sophia/static/js/2.e5754277.chunk.js",
+    "static/js/2.e5754277.chunk.js.map": "/sophia/static/js/2.e5754277.chunk.js.map",
+    "index.html": "/sophia/index.html",
+    "precache-manifest.49b48ce9581961ce7e42dc56a598087c.js": "/sophia/precache-manifest.49b48ce9581961ce7e42dc56a598087c.js",
+    "service-worker.js": "/sophia/service-worker.js",
+    "static/css/2.ac5b1653.chunk.css.map": "/sophia/static/css/2.ac5b1653.chunk.css.map",
+    "static/js/2.e5754277.chunk.js.LICENSE.txt": "/sophia/static/js/2.e5754277.chunk.js.LICENSE.txt",
+    "static/media/RIDIBatang.woff": "/sophia/static/media/RIDIBatang.5a6bf676.woff",
+    "static/media/arr-right.svg": "/sophia/static/media/arr-right.d9b04ebc.svg",
+    "static/media/book.png": "/sophia/static/media/book.f003d8e7.png",
+    "static/media/logo.png": "/sophia/static/media/logo.80f3ce70.png",
+    "static/media/logo.svg": "/sophia/static/media/logo.ddb83d2f.svg",
+    "static/media/main-img1.png": "/sophia/static/media/main-img1.a02cd77a.png",
+    "static/media/main-img2.jpg": "/sophia/static/media/main-img2.9ea21682.jpg",
+    "static/media/main-img3.jpg": "/sophia/static/media/main-img3.ebb843ff.jpg",
+    "static/media/main-img4.jpg": "/sophia/static/media/main-img4.0a6fd9b3.jpg",
+    "static/media/xbtn.svg": "/sophia/static/media/xbtn.c977241f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2c3ead8e.js",
+    "static/css/2.ac5b1653.chunk.css",
+    "static/js/2.e5754277.chunk.js",
+    "static/js/main.84d40553.chunk.js"
+  ]
+}
