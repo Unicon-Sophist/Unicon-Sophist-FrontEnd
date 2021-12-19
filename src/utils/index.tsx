@@ -1,4 +1,5 @@
 import cat from 'assets/img/cat.png';
+import { ChattingListType } from 'types';
 
 /* eslint-disable */
 // export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com/';\
@@ -95,4 +96,100 @@ export const categoryList = [
 	{ title: '문학', img: cat },
 	{ title: '사회', img: cat },
 	{ title: '공학', img: cat },
+];
+
+export const tempChattingList: ChattingListType = [
+	{
+		nickname: 'test1',
+		content:
+			'갑작스레 많은 눈이 학교에 찾아왔습니다. 한층 낭만이 더해진 캠퍼스를 즐겨보세요!!❄😆',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'수직공간이 암만 중요하다해도 수평공간도 중요해요... 저희 냥이도 본가에 있다 원룸 가니 애가 우울증마냥 무기력해져서 이러다 큰일나겠다싶어 다시 본가갔어요... 넓은 공간에서 우다다 못하면 병납니다...',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'저였으면 계단형 캣타워를 이사할 곳에 설치하고, 그 옆에 고양이가 뛰어도 관절에 무리가 없게끔 침대나 매트리스를 놓을 것 같네요 ',
+	},
+	{
+		nickname: 'test1',
+		content: '꽂게...손질...간장...끓이고...식하고 담가서 완성...아주 성공적!!!!👏👏',
+	},
+	{
+		nickname: 'test1',
+		content: '[생후479일] 이렇게 TV고 소파고 다 없애고 싶어했던 아모이는 어떻게 되었을까요',
+	},
+	{
+		nickname: 'test1',
+		content: '드디어 왔다..마누라 고마우이😍',
+	},
+	{
+		nickname: 'test1',
+		content: '비전의 최후',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'갑작스레 많은 눈이 학교에 찾아왔습니다. 한층 낭만이 더해진 캠퍼스를 즐겨보세요!!❄😆',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'수직공간이 암만 중요하다해도 수평공간도 중요해요... 저희 냥이도 본가에 있다 원룸 가니 애가 우울증마냥 무기력해져서 이러다 큰일나겠다싶어 다시 본가갔어요... 넓은 공간에서 우다다 못하면 병납니다...',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'저였으면 계단형 캣타워를 이사할 곳에 설치하고, 그 옆에 고양이가 뛰어도 관절에 무리가 없게끔 침대나 매트리스를 놓을 것 같네요 ',
+	},
+	{
+		nickname: 'test1',
+		content: '꽂게...손질...간장...끓이고...식하고 담가서 완성...아주 성공적!!!!👏👏',
+	},
+	{
+		nickname: 'test1',
+		content: '[생후479일] 이렇게 TV고 소파고 다 없애고 싶어했던 아모이는 어떻게 되었을까요',
+	},
+	{
+		nickname: 'test1',
+		content: '드디어 왔다..마누라 고마우이😍',
+	},
+	{
+		nickname: 'test1',
+		content: '비전의 최후',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'갑작스레 많은 눈이 학교에 찾아왔습니다. 한층 낭만이 더해진 캠퍼스를 즐겨보세요!!❄😆',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'수직공간이 암만 중요하다해도 수평공간도 중요해요... 저희 냥이도 본가에 있다 원룸 가니 애가 우울증마냥 무기력해져서 이러다 큰일나겠다싶어 다시 본가갔어요... 넓은 공간에서 우다다 못하면 병납니다...',
+	},
+	{
+		nickname: 'test1',
+		content:
+			'저였으면 계단형 캣타워를 이사할 곳에 설치하고, 그 옆에 고양이가 뛰어도 관절에 무리가 없게끔 침대나 매트리스를 놓을 것 같네요 ',
+	},
+	{
+		nickname: 'test1',
+		content: '꽂게...손질...간장...끓이고...식하고 담가서 완성...아주 성공적!!!!👏👏',
+	},
+	{
+		nickname: 'test1',
+		content: '[생후479일] 이렇게 TV고 소파고 다 없애고 싶어했던 아모이는 어떻게 되었을까요',
+	},
+	{
+		nickname: 'test1',
+		content: '드디어 왔다..마누라 고마우이😍',
+	},
+	{
+		nickname: 'test1',
+		content: '비전의 최후',
+	},
 ];

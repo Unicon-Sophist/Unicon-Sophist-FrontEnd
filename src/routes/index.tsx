@@ -6,7 +6,6 @@ import MyClass from 'pages/myclass';
 import Mypage from 'pages/mypage';
 import NoticeList from 'pages/notice';
 import NoticeDetail from 'pages/notice/detail';
-import RoomList from 'pages/room/list';
 import Room from 'pages/room/room';
 import SiginIn from 'pages/signin';
 import SiginUp from 'pages/signup';
@@ -17,7 +16,6 @@ const routers = () => {
 	return (
 		<Switch>
 			<Route path="/" exact component={Main} />
-			<Route path="/list" exact component={RoomList} />
 			<Route path="/room/:id" exact component={Room} />
 			<Route path="/login" exact component={SiginIn} />
 			<Route path="/sign-up" exact component={SiginUp} />

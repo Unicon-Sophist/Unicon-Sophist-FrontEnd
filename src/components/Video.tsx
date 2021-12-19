@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+
 interface Props {
 	email: string;
 	stream: MediaStream;
@@ -7,7 +9,7 @@ interface Props {
 
 const Video = ({ email, stream, muted }: Props) => {
 	const ref = useRef<HTMLVideoElement>(null);
-	const [isMuted, setIsMuted] = useState<boolean>(false);
+	const [isMuted, setIsMuted] = useState<boolean>(true);
 
 	useEffect(() => {
 		if (ref.current) ref.current.srcObject = stream;
@@ -15,11 +17,20 @@ const Video = ({ email, stream, muted }: Props) => {
 	}, [stream, muted]);
 
 	return (
-		<div className="video-wrapper">
-			<video className="video-item" ref={ref} muted={isMuted} autoPlay />
-			<label>{email}</label>
-		</div>
+		<OtherVidioContainer>
+			<OtherVidio ref={ref} muted={isMuted} autoPlay />
+		</OtherVidioContainer>
 	);
 };
 
 export default Video;
+
+const OtherVidioContainer = styled.div`
+	width: 12.5%;
+	margin-left: 10px;
+	margin-right: 10px;
+`;
+const OtherVidio = styled.video`
+	display: black;
+	width: 100%;
+`;
