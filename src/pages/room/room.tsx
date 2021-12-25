@@ -1,10 +1,10 @@
 import Video from 'components/Video';
 import * as React from 'react';
-import { WebRTCUser, MatchParams, ChattingListType } from 'types';
+import { WebRTCUser, MatchParams, ChattingListType, ChattingType } from 'types';
 import io from 'socket.io-client';
 import { useRef, useCallback, useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { CONFIG, SOCKET_SERVER_URL, tempChattingList } from 'utils';
+import { CONFIG, SOCKET_SERVER_URL } from 'utils';
 import { Container, SpacerBottom } from 'assets/styles/global-styled';
 import styled from 'styled-components';
 import Color from 'assets/styles/color';
@@ -12,27 +12,20 @@ import chatIcon from 'assets/img/chat-icon.png';
 
 function Room({ match }: RouteComponentProps<MatchParams>) {
 	const [users, setUsers] = useState<WebRTCUser[]>([]);
-	const [chattingList, setChattingList] = useState<ChattingListType>(tempChattingList);
+	const [chattingList, setChattingList] = useState<ChattingListType>([]);
 	const [chattingContent, setChattingContent] = useState<string>('');
 	const socketRef = useRef<SocketIOClient.Socket>();
 	const pcsRef = useRef<{ [socketId: string]: any }>({});
 	const localVideoRef = useRef<HTMLVideoElement>(null);
 	const localStreamRef = useRef<MediaStream>();
 	const chatRef = useRef<HTMLInputElement>(null);
+	const [recentChat, setRecentChat] = useState<ChattingType>({});
 
 	const submitChatting = () => {
-		setChattingList([...chattingList, { nickname: 'pushTest', content: chattingContent }]);
-		setChattingContent('');
-
-		setTimeout(() => {
-			if (chatRef.current) {
-				chatRef.current.scrollIntoView({
-					behavior: 'smooth',
-					block: 'end',
-					inline: 'nearest',
-				});
-			}
-		}, 0);
+		console.log(socketRef.current);
+		if (socketRef.current) {
+			socketRef.current.emit('message', 'test', chattingContent);
+		}
 	};
 
 	const getLocalStream = useCallback(async () => {
@@ -84,7 +77,6 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 			};
 
 			if (localStreamRef.current) {
-				console.log('localstream add');
 				localStreamRef.current.getTracks().forEach((track) => {
 					if (!localStreamRef.current) return;
 					pc.addTrack(track, localStreamRef.current);
@@ -103,6 +95,11 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 	useEffect(() => {
 		socketRef.current = io.connect(SOCKET_SERVER_URL);
 		getLocalStream();
+
+		socketRef.current.on('receive message', (msg: { name: string; text: string }) => {
+			setChattingContent('');
+			setRecentChat({ content: msg.text, nickname: msg.name });
+		});
 
 		socketRef.current.on('all_users', (allUsers: Array<{ id: string; email: string }>) => {
 			allUsers.forEach(async (user) => {
@@ -203,6 +200,20 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 		// eslint-disable-next-line
 	}, []);
 
+	useEffect(() => {
+		if (recentChat.content)
+			setTimeout(() => {
+				setChattingList([...chattingList, recentChat]);
+				if (chatRef.current) {
+					chatRef.current.scrollIntoView({
+						behavior: 'smooth',
+						block: 'end',
+						inline: 'nearest',
+					});
+				}
+			}, 0);
+	}, [recentChat]);
+
 	return (
 		<Container>
 			<SpacerBottom size={50} mSize={10} />
@@ -218,9 +229,9 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 				<ChattingWrap>
 					<ChattingContainer>
 						<ChattingInner ref={chatRef}>
-							{chattingList.map((i) => {
+							{chattingList.map((i, index) => {
 								return (
-									<Chatting>
+									<Chatting key={index + 'chatting'}>
 										<ChattingIconContainer>
 											<ChattingIcon src={chatIcon} alt={'chatIcon'} />
 										</ChattingIconContainer>

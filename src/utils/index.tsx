@@ -3,7 +3,7 @@ import { ChattingListType } from 'types';
 
 /* eslint-disable */
 // export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com/';\
-export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com';
+export const SOCKET_SERVER_URL = 'http://localhost:8001';
 export const CONFIG = {
 	iceServers: [
 		{
