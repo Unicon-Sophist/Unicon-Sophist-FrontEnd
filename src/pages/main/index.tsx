@@ -11,10 +11,9 @@ import { isMobileSize } from 'utils';
 const Main = () => {
 	return (
 		<main>
-			<MainTopSlider />
-			<SpacerBottom size={200} mSize={100} />
-
 			<Container>
+				<MainTopSlider />
+				<SpacerBottom size={200} mSize={100} />
 				<TitleFont isBig={true}>Categories</TitleFont>
 				<SpacerBottom size={20} mSize={5} />
 				<TitleDesc mSize={14}>

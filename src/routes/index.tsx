@@ -9,6 +9,7 @@ import NoticeDetail from 'pages/notice/detail';
 import Room from 'pages/room/room';
 import SiginIn from 'pages/signin';
 import SiginUp from 'pages/signup';
+import Dashboard from 'pages/dashboard';
 import KakaoLogin from 'pages/signin/KakaoLogin';
 import { Route, Switch } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ const routers = () => {
 			<Route path="/notice" exact component={NoticeList} />
 			<Route path="/notice/:noticeId" exact component={NoticeDetail} />
 			<Route path="/group" exact component={GroupList} />
+			<Route path="/Dashboard" exact component={Dashboard} />
 			<Route path="/group/:groupId" exact component={GroupDetail} />
 			<Route path="/login/kakao" exact component={KakaoLogin} />
 		</Switch>

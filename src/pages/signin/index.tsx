@@ -14,11 +14,11 @@ const SiginIn = () => {
 	const [password, setPassword] = useState<string>('');
 	const login = async () => {
 		try {
-			await Api.post('login', {
-				email,
-				password,
+			const res = await Api.post('login', {
+				memId: email,
+				memPw: password,
 			});
-			console.log('로그인 성공');
+			console.log(res);
 		} catch (error: any) {
 			console.log(error);
 		}
