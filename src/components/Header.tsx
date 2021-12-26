@@ -67,7 +67,7 @@ const Header = () => {
 									<HoverMenuText to="/mypage">알림설정</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem onClick={logout}>
-									<HoverMenuText to="/mypage">로그아웃</HoverMenuText>
+									<HoverMenuText to="/">로그아웃</HoverMenuText>
 								</HoverMenuItem>
 							</ProfileHoverMenu>
 						</ProfileContainer>
@@ -103,10 +103,18 @@ const Header = () => {
 								</HoverMenuItem>
 							</HoverMenuContainer>
 						</GnbMenuCategoryContainer>
-						<GnbMenu>Sophist 소개</GnbMenu>
-						<GnbMenu>고객센터</GnbMenu>
-						<GnbMenu>NEW 모임</GnbMenu>
-						<GnbMenu>BEST 모임</GnbMenu>
+						<GnbMenu>
+							<GnbMenuLink to="/intro">Sophist 소개</GnbMenuLink>
+						</GnbMenu>
+						<GnbMenu>
+							<GnbMenuLink to="/intro">고객센터</GnbMenuLink>
+						</GnbMenu>
+						<GnbMenu>
+							<GnbMenuLink to="/intro">NEW 모임</GnbMenuLink>
+						</GnbMenu>
+						<GnbMenu>
+							<GnbMenuLink to="/intro">BEST 모임</GnbMenuLink>
+						</GnbMenu>
 					</GnbContainer>
 
 					<SearchContainer>
@@ -302,9 +310,6 @@ const GnbMenuCategory = styled.li`
 `;
 
 const GnbMenu = styled.li`
-	font-family: RIDIBatang;
-	font-size: 18px;
-	line-height: 24px;
 	margin-right: 30px;
 	padding-bottom: 9px;
 	&: last-child {
@@ -312,6 +317,13 @@ const GnbMenu = styled.li`
 	}
 	cursor: pointer;
 	transition: 0.3s;
+`;
+
+const GnbMenuLink = styled(Link)`
+	font-family: RIDIBatang;
+	font-size: 18px;
+	line-height: 24px;
+
 	&:hover {
 		font-weight: bold;
 	}

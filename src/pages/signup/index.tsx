@@ -11,7 +11,7 @@ import mLogo from 'assets/img/m-logo.png';
 import styled from 'styled-components';
 import Api from 'api';
 import { useHistory } from 'react-router-dom';
-import { addToast, removeToast } from 'store/toast-store';
+import { addToast } from 'store/toast-store';
 import store from 'store';
 
 const SiginUp = () => {
@@ -73,10 +73,8 @@ const SiginUp = () => {
 			history.push('/');
 		} else if (result === 'fail') {
 			store.dispatch(addToast({ type: 'error', content: '' }));
-			store.dispatch(removeToast());
 		} else if (result === 'already_exists') {
 			store.dispatch(addToast({ type: 'error', content: '이메일이 존재 합니다.' }));
-			store.dispatch(removeToast());
 		}
 	};
 

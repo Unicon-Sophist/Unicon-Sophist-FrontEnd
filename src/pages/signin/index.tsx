@@ -3,7 +3,6 @@ import { ContainerSmall, H1, OnlyShow, SpacerBottom } from 'assets/styles/global
 import CommonBtn from 'components/CommonBtn';
 import CommonInput from 'components/CommonInput';
 import * as React from 'react';
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -19,20 +18,15 @@ const SiginIn = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const enterLogin = (e: KeyboardEvent) => {
+	const enterLogin = async (e: React.KeyboardEvent<HTMLFormElement>) => {
 		if (e.key === 'Enter') {
-			login();
+			await login();
 		}
 	};
-	useEffect(() => {
-		window.addEventListener('keydown', enterLogin);
-		return () => window.removeEventListener('keydown', enterLogin);
-	}, []);
 
 	const login = async () => {
 		try {
 			const {
-				data,
 				data: { result },
 			} = await Api.post('login', {
 				memId: email,
@@ -54,7 +48,7 @@ const SiginIn = () => {
 				history.push('/');
 			} else if (result === 'fail') {
 				store.dispatch(
-					addToast({ type: 'error', content: '이메일이나 비밀번호를 환인해주세요.' }),
+					addToast({ type: 'error', content: '이메일이나 비밀번호를 확인해주세요.' }),
 				);
 			}
 		} catch (error: any) {
@@ -64,39 +58,43 @@ const SiginIn = () => {
 
 	return (
 		<ContainerSmall>
-			<LogoMobile src={mLogo}></LogoMobile>
-			<OnlyShow isMobile={true} display={'block'}>
-				<H1>로그인</H1>
-			</OnlyShow>
-			<SpacerBottom size={80} mSize={30} />
-			<CommonInput label={'이메일'} value={email} setValue={setEmail} type={'text'} />
-			<SpacerBottom size={50} mSize={30} />
-			<CommonInput
-				label={'비밀번호'}
-				value={password}
-				setValue={setPassword}
-				type={'password'}
-			/>
-			<SpacerBottom size={50} mSize={30} />
-			<CommonBtn text={'로그인'} callback={login} />
-			<SpacerBottom size={24} />
-			<LoginMenuContainer>
-				<SignMenu>
-					<SignLink to="/login">비밀번호 찾기</SignLink>
-				</SignMenu>
-				<SignMenu>
-					<SignLink to="/sign-up">회원가입</SignLink>
-				</SignMenu>
-			</LoginMenuContainer>
-			<SpacerBottom size={30} />
-			<OrLine />
-			<SpacerBottom size={80} />
-			<CommonBtn text={'카카오로 시작하기'} type="kakao" />
-			<SpacerBottom size={20} />
-			<CommonBtn text={'네이버로 시작하기'} type="naver" />
+			<Form onKeyPress={(e) => enterLogin(e)}>
+				<LogoMobile src={mLogo}></LogoMobile>
+				<OnlyShow isMobile={true} display={'block'}>
+					<H1>로그인</H1>
+				</OnlyShow>
+				<SpacerBottom size={80} mSize={30} />
+				<CommonInput label={'이메일'} value={email} setValue={setEmail} type={'text'} />
+				<SpacerBottom size={50} mSize={30} />
+				<CommonInput
+					label={'비밀번호'}
+					value={password}
+					setValue={setPassword}
+					type={'password'}
+				/>
+				<SpacerBottom size={50} mSize={30} />
+				<CommonBtn text={'로그인'} callback={login} />
+				<SpacerBottom size={24} />
+				<LoginMenuContainer>
+					<SignMenu>
+						<SignLink to="/login">비밀번호 찾기</SignLink>
+					</SignMenu>
+					<SignMenu>
+						<SignLink to="/sign-up">회원가입</SignLink>
+					</SignMenu>
+				</LoginMenuContainer>
+				<SpacerBottom size={30} />
+				<OrLine />
+				<SpacerBottom size={80} />
+				<CommonBtn text={'카카오로 시작하기'} type="kakao" />
+				<SpacerBottom size={20} />
+				<CommonBtn text={'네이버로 시작하기'} type="naver" />
+			</Form>
 		</ContainerSmall>
 	);
 };
+
+const Form = styled.form``;
 
 const LogoMobile = styled.img`
 	display: none;

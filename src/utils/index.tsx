@@ -1,4 +1,7 @@
 import cat from 'assets/img/cat.png';
+import Intro1 from 'assets/img/intro1.jpg';
+import Intro2 from 'assets/img/intro2.jpg';
+import Intro3 from 'assets/img/intro3.jpg';
 
 /* eslint-disable */
 // export const SOCKET_SERVER_URL = 'https://sophistes-server.herokuapp.com/';\
@@ -95,4 +98,25 @@ export const categoryList = [
 	{ title: '문학', img: cat },
 	{ title: '사회', img: cat },
 	{ title: '공학', img: cat },
+];
+
+export const introData = [
+	{
+		key: 'list-index-1',
+		title: '소중한 문구',
+		content: `위하여 보내는 설산에서 이 실현에 \n 청춘이 생의 희망의 용기가 교향악이다. `,
+		img: Intro1,
+	},
+	{
+		key: 'list-index-2',
+		title: '소통하는 공간',
+		content: `품으며, 심장은 싸인 날카로우나\n 만천하의 있는 시들어 그들에게 이성은 쓸쓸하랴?`,
+		img: Intro2,
+	},
+	{
+		key: 'list-index-3',
+		title: '문구의 깊음',
+		content: `같으며, 뭇 황금시대를 새 인도하겠다는 아니다. \n원질이 피가 밝은 피고, 거선의 일월과 가지에 돋고, 기쁘며, 있으랴? `,
+		img: Intro3,
+	},
 ];

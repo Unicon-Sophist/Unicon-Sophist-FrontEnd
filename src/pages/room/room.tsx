@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import Color from 'assets/styles/color';
 import chatIcon from 'assets/img/chat-icon.png';
 
-function Room({ match }: RouteComponentProps<MatchParams>) {
+const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 	const [users, setUsers] = useState<WebRTCUser[]>([]);
 	const [chattingList, setChattingList] = useState<ChattingListType>([]);
 	const [chattingContent, setChattingContent] = useState<string>('');
@@ -257,7 +257,7 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 			<SpacerBottom size={150} />
 		</Container>
 	);
-}
+};
 
 export default Room;
 const Chatting = styled.div`
