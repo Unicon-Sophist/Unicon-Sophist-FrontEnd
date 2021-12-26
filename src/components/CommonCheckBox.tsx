@@ -1,5 +1,6 @@
 import Color from 'assets/styles/color';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -14,6 +15,10 @@ interface PropsTypes {
 const CommonCheckBox = (props: PropsTypes) => {
 	const [checked, setChecked] = useState<boolean>(props.isChecked ? props.isChecked : false);
 	const randomId = Math.random().toString(36).substr(2, 11);
+
+	useEffect(() => {
+		setChecked(props.isChecked as boolean);
+	}, [props.isChecked]);
 
 	return (
 		<CheckBoxWrap>

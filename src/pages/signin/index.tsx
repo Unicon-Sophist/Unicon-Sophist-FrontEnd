@@ -3,22 +3,60 @@ import { ContainerSmall, H1, OnlyShow, SpacerBottom } from 'assets/styles/global
 import CommonBtn from 'components/CommonBtn';
 import CommonInput from 'components/CommonInput';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import mLogo from 'assets/img/m-logo.png';
 import Api from 'api';
+import { addToast } from 'store/toast-store';
+import store from 'store';
+import { useHistory } from 'react-router-dom';
+import { loginProcess } from 'store/userinfo-store';
+
 const SiginIn = () => {
-	useEffect(() => {}, []);
+	let history = useHistory();
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
+
+	const enterLogin = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			login();
+		}
+	};
+	useEffect(() => {
+		window.addEventListener('keydown', enterLogin);
+		return () => window.removeEventListener('keydown', enterLogin);
+	}, []);
+
 	const login = async () => {
 		try {
-			const res = await Api.post('login', {
+			const {
+				data,
+				data: { result },
+			} = await Api.post('login', {
 				memId: email,
 				memPw: password,
 			});
-			console.log(res);
+			if (result === 'success') {
+				store.dispatch(addToast({ isActive: true, type: 'info', content: '환영합니다.' }));
+				store.dispatch(
+					loginProcess({
+						loginStatus: 'login',
+						info: {
+							nickname: '',
+							email: '',
+							provider: 'web',
+							profileImage: '',
+						},
+					}),
+				);
+				history.push('/');
+			} else if (result === 'fail') {
+				store.dispatch(
+					addToast({ type: 'error', content: '이메일이나 비밀번호를 환인해주세요.' }),
+				);
+			}
 		} catch (error: any) {
 			console.log(error);
 		}

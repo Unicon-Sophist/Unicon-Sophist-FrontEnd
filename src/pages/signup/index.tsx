@@ -4,15 +4,18 @@ import CommonCheckBox from 'components/CommonCheckBox';
 import CommonInput from 'components/CommonInput';
 import CommonRadio from 'components/CommonRadio';
 import * as React from 'react';
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import { genderList } from 'utils';
 import { signReducer, initData, ReduceType } from './reducer';
 import mLogo from 'assets/img/m-logo.png';
 import styled from 'styled-components';
+import Api from 'api';
+import { useHistory } from 'react-router-dom';
+import { addToast, removeToast } from 'store/toast-store';
+import store from 'store';
 
 const SiginUp = () => {
-	useEffect(() => {}, []);
-
+	let history = useHistory();
 	const [state, dispatch] = useReducer(signReducer, initData);
 
 	const setEmail = (value: string): void => {
@@ -38,6 +41,58 @@ const SiginUp = () => {
 			password: state.password,
 		});
 	};
+
+	const setCheckPrivacyPolicy = (value: boolean): void => {
+		dispatch({
+			type: ReduceType.CHAHNE_PRIVACY_POLICY,
+			checkPrivacyPolicy: value,
+		});
+	};
+
+	const setCheckServiceTerms = (value: boolean): void => {
+		dispatch({
+			type: ReduceType.CHAHNE_SERVICE_TERMS,
+			checkServiceTerms: value,
+		});
+	};
+
+	const signUp = async () => {
+		const {
+			data: { result },
+		} = await Api.post('join', {
+			memId: state.email,
+			memPw: state.password,
+			memGender: state.gender,
+			memNickname: state.nickname,
+		});
+
+		if (result === 'success') {
+			store.dispatch(
+				addToast({ isActive: true, type: 'info', content: '회원가입 되었습니다.' }),
+			);
+			history.push('/');
+		} else if (result === 'fail') {
+			store.dispatch(addToast({ type: 'error', content: '' }));
+			store.dispatch(removeToast());
+		} else if (result === 'already_exists') {
+			store.dispatch(addToast({ type: 'error', content: '이메일이 존재 합니다.' }));
+			store.dispatch(removeToast());
+		}
+	};
+
+	const isDisabled = !(
+		state.email &&
+		!state.error.emailError.isError &&
+		state.nickname &&
+		state.gender &&
+		state.password &&
+		!state.error.passwordConfirmError.isError &&
+		!state.error.passwordError.isError &&
+		state.passwordConfirm &&
+		state.password === state.passwordConfirm &&
+		state.checkPrivacyPolicy &&
+		state.checkServiceTerms
+	);
 
 	return (
 		<ContainerSmall>
@@ -86,19 +141,23 @@ const SiginUp = () => {
 			<SpacerBottom size={70} mSize={30} />
 
 			<CommonCheckBox
+				isChecked={state.checkPrivacyPolicy}
 				label={'에 동의합니다.'}
 				link={'https://www.naver.com'}
 				linkText={'개인정보처리방침'}
+				setIsChecked={setCheckPrivacyPolicy}
 			/>
 			<SpacerBottom size={15} />
 			<CommonCheckBox
+				isChecked={state.checkServiceTerms}
 				label={'에 동의합니다.'}
 				link={'https://www.naver.com'}
 				linkText={'이용약관'}
+				setIsChecked={setCheckServiceTerms}
 			/>
 			<SpacerBottom size={70} mSize={30} />
 
-			<CommonBtn text={'회원가입'} callback={() => console.log('!!!')} />
+			<CommonBtn text={'회원가입'} callback={signUp} disabled={isDisabled} />
 		</ContainerSmall>
 	);
 };

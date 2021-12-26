@@ -11,15 +11,23 @@ import { Container } from 'assets/styles/global-styled';
 import mLogo from 'assets/img/m-logo.png';
 import menu from 'assets/img/menu.png';
 import defaultProfile from 'assets/img/default-profile.png';
+import { useSelector } from 'react-redux';
+import { userInfoName } from '../store';
+import { logoutProcess } from 'store/userinfo-store';
+import store from '../store';
 
-const isLogin = false;
 const Header = () => {
+	const { loginStatus } = useSelector((state) => state[userInfoName]);
 	const [hoverMenuActive, setHoverMenuActive] = useState(false);
 	let location = useLocation();
 
 	useEffect(() => {
 		setHoverMenuActive(false);
 	}, [location]);
+
+	const logout = () => {
+		store.dispatch(logoutProcess());
+	};
 
 	return (
 		<HeaderWrap>
@@ -31,16 +39,18 @@ const Header = () => {
 						</Link>
 					</LogoContainer>
 
-					<LoginMenuContainer>
-						<SignMenu>
-							<SignLink to="/login">로그인</SignLink>
-						</SignMenu>
-						<SignMenu>
-							<SignLink to="/sign-up">회원가입</SignLink>
-						</SignMenu>
-					</LoginMenuContainer>
+					{loginStatus !== 'login' && (
+						<LoginMenuContainer>
+							<SignMenu>
+								<SignLink to="/login">로그인</SignLink>
+							</SignMenu>
+							<SignMenu>
+								<SignLink to="/sign-up">회원가입</SignLink>
+							</SignMenu>
+						</LoginMenuContainer>
+					)}
 
-					{isLogin && (
+					{loginStatus === 'login' && (
 						<ProfileContainer>
 							<ProfileText>알림</ProfileText>
 							<ProfileText>나의 모임</ProfileText>
@@ -56,7 +66,7 @@ const Header = () => {
 								<HoverMenuItem>
 									<HoverMenuText to="/mypage">알림설정</HoverMenuText>
 								</HoverMenuItem>
-								<HoverMenuItem>
+								<HoverMenuItem onClick={logout}>
 									<HoverMenuText to="/mypage">로그아웃</HoverMenuText>
 								</HoverMenuItem>
 							</ProfileHoverMenu>

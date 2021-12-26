@@ -200,6 +200,7 @@ function Room({ match }: RouteComponentProps<MatchParams>) {
 		// eslint-disable-next-line
 	}, []);
 
+	/* eslint-disable */
 	useEffect(() => {
 		if (recentChat.content)
 			setTimeout(() => {
