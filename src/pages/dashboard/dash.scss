@@ -1,0 +1,40 @@
+table.dash {
+  width: 500px;
+	margin: 50px;
+}
+
+th {
+	font-size: 18px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: normal;
+	padding: 10px !important
+}
+
+thead tr {
+	background-color: #F7F7F7;
+}
+
+tr {
+	border-bottom: 1px solid #EEEEEE;
+	cursor: pointer;
+}
+
+tr:hover {
+	transition: 0.3s;
+	background-color: #F7F7F7;
+}
+
+td {
+	font-size: 18px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	padding: 10px !important;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+
+thead {
+  border-bottom: 1px solid #666666;
+}
