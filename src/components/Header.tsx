@@ -90,10 +90,19 @@ const Header = () => {
 									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText to="/mypage/class">내 클래스</HoverMenuText>
+									<HoverMenuText to="/mypage">
+										철학 <HoverMenuDetailText>Philosop</HoverMenuDetailText>
+									</HoverMenuText>
 								</HoverMenuItem>
 								<HoverMenuItem>
-									<HoverMenuText to="/notice">공지사항</HoverMenuText>
+									<HoverMenuText to="/mypage">
+										사회 <HoverMenuDetailText>Social</HoverMenuDetailText>
+									</HoverMenuText>
+								</HoverMenuItem>
+								<HoverMenuItem>
+									<HoverMenuText to="/mypage">
+										공학 <HoverMenuDetailText>Engine</HoverMenuDetailText>
+									</HoverMenuText>
 								</HoverMenuItem>
 							</HoverMenuContainer>
 						</GnbMenuCategoryContainer>
@@ -101,13 +110,10 @@ const Header = () => {
 							<GnbMenuLink to="/intro">Sophist 소개</GnbMenuLink>
 						</GnbMenu>
 						<GnbMenu>
-							<GnbMenuLink to="/intro">고객센터</GnbMenuLink>
+							<GnbMenuLink to="/notice">공지사항</GnbMenuLink>
 						</GnbMenu>
 						<GnbMenu>
-							<GnbMenuLink to="/intro">NEW 모임</GnbMenuLink>
-						</GnbMenu>
-						<GnbMenu>
-							<GnbMenuLink to="/intro">BEST 모임</GnbMenuLink>
+							<GnbMenuLink to="/Popup">기타 팝업</GnbMenuLink>
 						</GnbMenu>
 					</GnbContainer>
 

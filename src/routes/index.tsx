@@ -15,6 +15,7 @@ import { Route, Switch } from 'react-router-dom';
 import ProvideAuth from './ProvideAuth';
 import ScrollToTop from './ScrollTopRoute';
 import Intro from 'pages/intro';
+import Popup from 'pages/popup';
 
 const routers = () => {
 	return (
@@ -34,6 +35,7 @@ const routers = () => {
 				<Route path="/group/:groupId" exact component={GroupDetail} />
 				<Route path="/login/kakao" exact component={KakaoLogin} />
 				<Route path="/intro" exact component={Intro} />
+				<Route path="/Popup" exact component={Popup} />
 			</Switch>
 		</>
 	);
