@@ -9,7 +9,7 @@ import api from 'api';
 import * as React from 'react';
 import CommonTab from 'components/CommonTab';
 import CommonBtn from 'components/CommonBtn';
-import { isMobileSize } from 'utils';
+import { isMobileSize, convertDate } from 'utils';
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -29,6 +29,7 @@ type DetailParams = {
 	groupStarPoint: number;
 	groupStartDay: string;
 	groupState: string;
+	groupStartTime: string;
 };
 
 const GroupDetail = () => {
@@ -37,10 +38,10 @@ const GroupDetail = () => {
 
 	useEffect(() => {
 		api.get(`group/${params.groupId}`).then((i) => {
-			console.log(i.data.content[0]);
 			setDetail(i.data.content[0]);
+			console.log(i.data.content[0]);
 		});
-	}, []);
+	}, [params.groupId]);
 
 	const detailTab = [
 		{
@@ -139,16 +140,18 @@ const GroupDetail = () => {
 									</Td>
 								</Tr>
 								<Tr>
-									<Th>모임 요일 </Th>
-									<Td>{detail ? detail.groupStartDay : ''}</Td>
+									<Th>모임 요일</Th>
+									<Td>{detail ? convertDate(detail.groupStartDay) : ''}</Td>
 								</Tr>
 								<Tr>
-									<Th>모임 시간 </Th>
-									<Td>오전 11시</Td>
+									<Th>모임 시간</Th>
+									<Td>{detail ? detail.groupStartTime + '시' : ''}</Td>
 								</Tr>
 								<Tr>
-									<Th>모임 상태 </Th>
-									<Td>{detail ? detail.groupState : ''}</Td>
+									<Th>모임 상태</Th>
+									<Td>
+										{detail ? (detail.groupState === 'Y' ? '모임 중' : '') : ''}
+									</Td>
 								</Tr>
 							</Tbody>
 						</GroupTable>

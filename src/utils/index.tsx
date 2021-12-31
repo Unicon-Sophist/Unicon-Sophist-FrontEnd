@@ -120,3 +120,24 @@ export const introData = [
 		img: Intro3,
 	},
 ];
+
+export const convertDate = (code: string): string => {
+	switch (code) {
+		case 'Mon':
+			return '월요일';
+		case 'Tue':
+			return '화요일';
+		case 'WED':
+			return '수요일';
+		case 'Thur':
+			return '목요일';
+		case 'Fri':
+			return '금요일';
+		case 'Sat':
+			return '토요일';
+		case 'Sun':
+			return '일요일';
+		default:
+			return '수요일';
+	}
+};
