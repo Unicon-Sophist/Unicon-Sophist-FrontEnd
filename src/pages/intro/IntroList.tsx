@@ -11,6 +11,7 @@ const IntroList = ({ scrollPostion }: { scrollPostion: number }) => {
 		{ isActive: false },
 		{ isActive: false },
 		{ isActive: false },
+		{ isActive: false },
 	]);
 
 	useEffect(() => {

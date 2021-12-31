@@ -1,47 +1,90 @@
-import { Container, H4, SpacerBottom } from 'assets/styles/global-styled';
-import * as React from 'react';
+import { BodyFont, Container, H4, SpacerBottom } from 'assets/styles/global-styled';
 import styled from 'styled-components';
 import best from 'assets/img/best.png';
 import book from 'assets/img/book.png';
 import Color from 'assets/styles/color';
 import { FlexContainer } from 'assets/styles/global-styled';
 import StartGrade from 'components/StarGrade';
+import api from 'api';
+import * as React from 'react';
+import CommonTab from 'components/CommonTab';
+import CommonBtn from 'components/CommonBtn';
+import { isMobileSize } from 'utils';
+import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+type Params = {
+	groupId: string;
+};
+
+type DetailParams = {
+	9: string;
+	categoryName: string;
+	fileFullPath: string;
+	groupDate: string;
+	groupDesc: string;
+	groupHeadCount: number;
+	groupLeader: string;
+	groupName: string;
+	groupStarPoint: number;
+	groupStartDay: string;
+	groupState: string;
+};
 
 const GroupDetail = () => {
+	const params = useParams<Params>();
+	const [detail, setDetail] = useState<DetailParams>();
+
+	useEffect(() => {
+		api.get(`group/${params.groupId}`).then((i) => {
+			console.log(i.data.content[0]);
+			setDetail(i.data.content[0]);
+		});
+	}, []);
+
+	const detailTab = [
+		{
+			label: '모임소개',
+			value: 'introGruop',
+			callback: () => console.log(''),
+		},
+		{
+			label: '모임 상세 정보',
+			value: 'introGroupDetail',
+			callback: () => console.log(''),
+		},
+		{
+			label: '모임 방장 정보',
+			value: 'introGruopLeaderInfo',
+			callback: () => console.log(''),
+		},
+	];
+
 	return (
 		<Container>
-			<SpacerBottom size={150} />
+			<SpacerBottom size={150} mSize={30} />
 
 			<GroupItemContainer>
 				<GroupImageWrap>
 					<GroupImgContainer background={book}>
-						{/* {Math.floor((Math.random() * 100) % 2) === 0 && (
-						<IsEnd>
-							<EndTitle>마감되었습니다!</EndTitle>
-						</IsEnd>
-					)} */}
-
 						<IsBestImg src={best} />
 					</GroupImgContainer>
 
 					<FlexContainer>
 						<StartGrade size={3} starSize={30} />
 						<AfterFeelContainer>
-							<AfterFeelGrade>3.0</AfterFeelGrade>
+							<AfterFeelGrade>{detail ? detail.groupStarPoint : 5}</AfterFeelGrade>
 							<AfterFeelNumber>(5명의 후기)</AfterFeelNumber>
 						</AfterFeelContainer>
 					</FlexContainer>
 				</GroupImageWrap>
 
 				<GroupInfoContainer>
-					<GroupText>역사 문화</GroupText>
-					<TitleText>역사 문학 토론방</TitleText>
+					<GroupText>{detail ? detail.categoryName : ''}</GroupText>
+					<TitleText>{detail ? detail.groupName : ''}</TitleText>
 
 					<ContentContainer>
-						<Content>
-							책에서 찾아낸 한줌의 소중한 문구와 그 문구의 깊음 문구와 그... 책에서
-							찾아낸 한줌의 소중한 문구와 그 문구의 깊음 문구와 그... 책에서 찾아낸
-						</Content>
+						<Content>{detail ? detail.groupDesc : ''}</Content>
 					</ContentContainer>
 
 					<TagWrap>
@@ -55,10 +98,144 @@ const GroupDetail = () => {
 				</GroupInfoContainer>
 			</GroupItemContainer>
 
-			<SpacerBottom size={100} />
+			<SpacerBottom size={100} mSize={50} />
+
+			<SpacerBottom size={65} mSize={30}>
+				<GroupTabInfoContainer justify={'space-between'} aligin={'flex-start'}>
+					<LeftContentContainer>
+						<SpacerBottom size={65} mSize={30}>
+							<CommonTab
+								tabList={detailTab}
+								activeTab={'introGruop'}
+								setActiveTab={() => {}}
+							/>
+						</SpacerBottom>
+
+						<SpacerBottom size={20}>
+							<GroupTitle>{detail ? detail.groupName : ''}</GroupTitle>
+						</SpacerBottom>
+
+						<SpacerBottom size={40}>
+							<GroupDesc>{detail ? detail.groupDesc : ''}</GroupDesc>
+						</SpacerBottom>
+
+						<SpacerBottom size={40}>
+							<GroupTitle>모임 상세 정보</GroupTitle>
+						</SpacerBottom>
+
+						<GroupTable>
+							<colgroup>
+								<col width="100" />
+							</colgroup>
+							<Tbody>
+								<Tr>
+									<Th isTerm={true}>모임 기간 </Th>
+									<Td>
+										{detail
+											? detail.groupDate.split('~')[0].split(' ')[0] +
+											  ' ~ ' +
+											  detail.groupDate.split('~')[1].split(' ')[0]
+											: ''}
+									</Td>
+								</Tr>
+								<Tr>
+									<Th>모임 요일 </Th>
+									<Td>{detail ? detail.groupStartDay : ''}</Td>
+								</Tr>
+								<Tr>
+									<Th>모임 시간 </Th>
+									<Td>오전 11시</Td>
+								</Tr>
+								<Tr>
+									<Th>모임 상태 </Th>
+									<Td>{detail ? detail.groupState : ''}</Td>
+								</Tr>
+							</Tbody>
+						</GroupTable>
+
+						<SpacerBottom size={20}>
+							<Link to={'/room/123'}>
+								<FlexContainer>
+									<CommonBtn
+										size={isMobileSize ? window.innerWidth - 20 : 300}
+										text={'참여하기'}
+										callback={() => {}}
+									/>
+								</FlexContainer>
+							</Link>
+						</SpacerBottom>
+					</LeftContentContainer>
+
+					<RightBox />
+				</GroupTabInfoContainer>
+			</SpacerBottom>
 		</Container>
 	);
 };
+
+const GroupTable = styled.table`
+	width: 100%;
+	margin-bottom: 30px;
+`;
+
+const Tr = styled.tr``;
+const Tbody = styled.tbody``;
+const Th = styled.th<{ isTerm?: boolean }>`
+	font-size: 18px;
+	line-height: 28px;
+	color: ${Color.fontBlack};
+	padding: 10px;
+	border-bottom: 1px solid ${Color.borderGray};
+	background-color: ${({ isTerm }) => (isTerm ? Color.grayF7F7F7 : 'white')};
+	padding-left: ${({ isTerm }) => (isTerm ? '10px' : 0)};
+	font-weight: 400;
+	text-align: left;
+`;
+const Td = styled.td`
+	font-size: 18px;
+	line-height: 28px;
+	color: ${Color.fontBlack};
+	padding: 10px;
+	border-bottom: 1px solid ${Color.borderGray};
+	background-color: white;
+	padding-left: 20px;
+`;
+
+const GroupTabInfoContainer = styled(FlexContainer)`
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+	}
+`;
+
+const GroupDesc = styled(BodyFont)`
+	font-size: 18px;
+	line-height: 28px;
+	color: ${Color.fontBlack};
+`;
+
+const GroupTitle = styled(BodyFont)`
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: bold;
+	color: ${Color.gray4444};
+`;
+
+const LeftContentContainer = styled.div``;
+
+const RightBox = styled.div`
+	flex-shrink: 0;
+	width: 400px;
+	border: 1px solid #dddddd;
+	height: 645px;
+	border-radius: 10px;
+	margin-left: 130px;
+	@media only screen and (max-width: 768px) {
+		width: 100%;
+		margin-left: 0;
+		height: 300px;
+	}
+	margin-bottom: 200px;
+`;
 
 const AfterFeelContainer = styled.div`
 	display: flex;
@@ -78,7 +255,7 @@ const AfterFeelNumber = styled.p`
 	font-size: 18px;
 	line-height: 30px;
 	color: ${Color.fontGray};
-	margin-right: 5px;
+	margin-left: 5px;
 `;
 
 const Tag = styled.p`
@@ -130,10 +307,19 @@ const GroupItemContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 20px;
+
+	@media only screen and (max-width: 768px) {
+		flex-direction: column;
+	}
 `;
 
 const GroupImageWrap = styled.div`
 	width: 40%;
+
+	@media only screen and (max-width: 768px) {
+		width: 100%;
+		margin-bottom: 30px;
+	}
 `;
 
 const GroupImgContainer = styled.div<{ background: any }>`
@@ -146,6 +332,10 @@ const GroupImgContainer = styled.div<{ background: any }>`
 	border-radius: 20px;
 	margin-right: 50px;
 	margin-bottom: 25px;
+
+	@media only screen and (max-width: 768px) {
+		margin-right: 0;
+	}
 `;
 
 const IsBestImg = styled.img`
@@ -160,6 +350,10 @@ const GroupInfoContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	width: 60%;
+
+	@media only screen and (max-width: 768px) {
+		width: 100%;
+	}
 `;
 
 export default GroupDetail;

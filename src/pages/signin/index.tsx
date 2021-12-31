@@ -26,13 +26,12 @@ const SiginIn = () => {
 
 	const login = async () => {
 		try {
-			const {
-				data: { result },
-			} = await Api.post('login', {
+			const { data } = await Api.post('login', {
 				memId: email,
 				memPw: password,
 			});
-			if (result === 'success') {
+			console.log(data);
+			if (data.status === 200) {
 				store.dispatch(addToast({ isActive: true, type: 'info', content: '환영합니다.' }));
 				store.dispatch(
 					loginProcess({
@@ -46,13 +45,13 @@ const SiginIn = () => {
 					}),
 				);
 				history.push('/');
-			} else if (result === 'fail') {
+			} else {
 				store.dispatch(
 					addToast({ type: 'error', content: '이메일이나 비밀번호를 확인해주세요.' }),
 				);
 			}
 		} catch (error: any) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 

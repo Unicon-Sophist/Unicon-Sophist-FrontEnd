@@ -4,11 +4,26 @@ import styled from 'styled-components';
 import MainTopSlider from './MainTopSlider';
 import Color from 'assets/styles/color';
 import CategorSlider from './CategorySlider';
-import CommonSwiper from 'components/CommonSwiper';
-import ClassItem from 'components/ClassItem';
-import { isMobileSize } from 'utils';
+import api from 'api';
+import { useState, useEffect } from 'react';
+import { GroupType } from 'types';
+import GroupList from './GroupList';
 
 const Main = () => {
+	const [bestGruopList, setBestGroupList] = useState<GroupType[]>([]);
+	const [currentGroupList, setCurrentGroupList] = useState<GroupType[]>([]);
+	useEffect(() => {
+		api.get('bestGroupList').then((res) => {
+			console.log(res.data.content);
+			setBestGroupList(res.data.content);
+		});
+
+		api.get('currentGroupList').then((res) => {
+			console.log(res.data.content);
+			setCurrentGroupList(res.data.content);
+		});
+	}, []);
+
 	return (
 		<main>
 			<Container>
@@ -28,50 +43,22 @@ const Main = () => {
 			<Container>
 				<TitleFont isBig={true}>BEST Meeting</TitleFont>
 				<SpacerBottom size={20} mSize={5} />
-				<TitleDesc mSize={14}>
-					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
-				</TitleDesc>
+				<TitleDesc mSize={14}>소피스트에서 즐길 수 있는 BEST 모임입니다.</TitleDesc>
 				<SpacerBottom size={30} />
 			</Container>
 
 			<PaddingContainer>
-				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+				<GroupList list={bestGruopList} />
 			</PaddingContainer>
 
 			<SpacerBottom size={300} mSize={100} />
 
 			<Container>
-				<TitleFont isBig={true}>New Meeting</TitleFont>
+				<TitleFont isBig={true}>Current Meeting</TitleFont>
 				<SpacerBottom size={20} mSize={5} />
-				<TitleDesc mSize={14}>
-					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
-				</TitleDesc>
+				<TitleDesc mSize={14}>소피스트에서 운영중인 모임입니다.</TitleDesc>
 				<SpacerBottom size={30} />
-				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
-			</Container>
-
-			<SpacerBottom size={100} mSize={100} />
-
-			<Container>
-				<TitleFont isBig={true}>New Meeting</TitleFont>
-				<SpacerBottom size={20} mSize={5} />
-				<TitleDesc mSize={14}>
-					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
-				</TitleDesc>
-				<SpacerBottom size={30} />
-				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
-			</Container>
-
-			<SpacerBottom size={100} mSize={100} />
-
-			<Container>
-				<TitleFont isBig={true}>New Meeting</TitleFont>
-				<SpacerBottom size={20} mSize={5} />
-				<TitleDesc mSize={14}>
-					소피스트에서 즐길 수 있는 다양한 모임 종류를 소개합니다.
-				</TitleDesc>
-				<SpacerBottom size={30} />
-				<CommonSwiper Item={<ClassItem size={isMobileSize ? 130 : 300} />} />
+				<GroupList list={currentGroupList} />
 			</Container>
 
 			<SpacerBottom size={200} mSize={150} />

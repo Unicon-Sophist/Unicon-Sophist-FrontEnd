@@ -31,10 +31,14 @@ const CommonTab = (props: PropsTypes) => {
 };
 
 const TabText = styled(BodyFont)<{ isActive: boolean }>`
-	font-size: 18px;
-	line-height: 24px;
+	font-size: 22px;
+	line-height: 28px;
 	font-weight: ${(props) => (props.isActive ? 'bold' : '400')};
-	color: ${(props) => (props.isActive ? Color.gray6666 : Color.gray4444)};
+	color: ${(props) => (props.isActive ? Color.gray4444 : Color.gray6666)};
+	@media only screen and (max-width: 768px) {
+		font-size: 18px;
+		line-height: 24px;
+	}
 `;
 
 const Tab = styled.div<{ isActive: boolean }>`

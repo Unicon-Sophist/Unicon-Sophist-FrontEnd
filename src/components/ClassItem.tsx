@@ -7,50 +7,69 @@ import Color from 'assets/styles/color';
 import heartFull from 'assets/img/icon-heart-full.png';
 import heartEmpty from 'assets/img/icon-heart-empty.png';
 import { BodyFont, FlexContainer } from 'assets/styles/global-styled';
+import { GroupType } from 'types';
+import { Link } from 'react-router-dom';
 
 const ClassItem = ({
 	hasmargin,
 	index = 0,
 	size,
+	item = {
+		categoryName: '',
+		filePath: '',
+		groupCd: '',
+		groupDesc: '',
+		groupDetailCd: '',
+		groupName: '',
+		groupStarPoint: 0,
+		originFileName: '',
+	},
 }: {
 	hasmargin?: boolean;
 	index?: number;
 	size?: number;
+	item?: GroupType;
 }) => {
 	return (
 		<ClassItemContainer hasmargin={hasmargin} index={index}>
-			<ClassImgContainer background={book} size={size}>
-				{Math.floor((Math.random() * 100) % 2) === 0 && (
-					<IsEnd>
-						<EndTitle>마감되었습니다!</EndTitle>
-					</IsEnd>
-				)}
+			<Link to={`/group/${item.groupDetailCd}`}>
+				<ClassImgContainer background={book} size={size}>
+					{Math.floor((Math.random() * 100) % 2) === 0 && (
+						<IsEnd>
+							<EndTitle>마감되었습니다!</EndTitle>
+						</IsEnd>
+					)}
 
-				<IsBestImg src={best} />
-				<HeartImg
-					src={Math.floor((Math.random() * 100) % 2) === 0 ? heartFull : heartEmpty}
-				/>
-			</ClassImgContainer>
+					<IsBestImg src={best} />
+					<HeartImg
+						src={Math.floor((Math.random() * 100) % 2) === 0 ? heartFull : heartEmpty}
+					/>
+				</ClassImgContainer>
 
-			<TitleContainer justify={'space-between'}>
-				<TitleText>역사 문학 토론방</TitleText>
-				<GroupText>역사 문화</GroupText>
-			</TitleContainer>
+				<TitleContainer justify={'space-between'}>
+					<TitleText> {item.groupName ? item.groupName : '역사 문학 토론방'}</TitleText>
+					<GroupText>{item.categoryName ? item.categoryName : '역사 문화'}</GroupText>
+				</TitleContainer>
 
-			<ContentContainer>
-				<Content>책에서 찾아낸 한줌의 소중한 문구와 그 문구의 깊음 문구와 그...</Content>
-			</ContentContainer>
+				<ContentContainer>
+					<Content>
+						{item.groupDesc
+							? item.groupDesc
+							: '책에서 찾아낸 한줌의 소중한 문구와 그 문구의 깊음 문구와 그...'}
+					</Content>
+				</ContentContainer>
 
-			<TagWrap>
-				<TagContainer>
-					<Tag>#역사</Tag>
-					<Tag>#아시아</Tag>
-					<Tag>#문화</Tag>
-					<Tag>#동남아시아</Tag>
-				</TagContainer>
+				<TagWrap>
+					<TagContainer>
+						<Tag>#역사</Tag>
+						<Tag>#아시아</Tag>
+						<Tag>#문화</Tag>
+						<Tag>#동남아시아</Tag>
+					</TagContainer>
 
-				<StartGrade size={3} />
-			</TagWrap>
+					<StartGrade size={item.groupStarPoint} />
+				</TagWrap>
+			</Link>
 		</ClassItemContainer>
 	);
 };

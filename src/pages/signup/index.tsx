@@ -57,23 +57,22 @@ const SiginUp = () => {
 	};
 
 	const signUp = async () => {
-		const {
-			data: { result },
-		} = await Api.post('join', {
+		const { data } = await Api.post('join', {
 			memId: state.email,
 			memPw: state.password,
 			memGender: state.gender,
 			memNickname: state.nickname,
 		});
 
-		if (result === 'success') {
+		console.log(data);
+		if (data.data === 'success') {
 			store.dispatch(
 				addToast({ isActive: true, type: 'info', content: '회원가입 되었습니다.' }),
 			);
 			history.push('/');
-		} else if (result === 'fail') {
+		} else if (data.data === 'fail') {
 			store.dispatch(addToast({ type: 'error', content: '' }));
-		} else if (result === 'already_exists') {
+		} else if (data.data === 'already_exists') {
 			store.dispatch(addToast({ type: 'error', content: '이메일이 존재 합니다.' }));
 		}
 	};

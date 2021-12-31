@@ -95,12 +95,6 @@ const Header = () => {
 								<HoverMenuItem>
 									<HoverMenuText to="/notice">공지사항</HoverMenuText>
 								</HoverMenuItem>
-								<HoverMenuItem>
-									<HoverMenuText to="/group">모임 리스트</HoverMenuText>
-								</HoverMenuItem>
-								<HoverMenuItem>
-									<HoverMenuText to="/group/1">모임 상세</HoverMenuText>
-								</HoverMenuItem>
 							</HoverMenuContainer>
 						</GnbMenuCategoryContainer>
 						<GnbMenu>
