@@ -39,7 +39,6 @@ const GroupDetail = () => {
 	useEffect(() => {
 		api.get(`group/${params.groupId}`).then((i) => {
 			setDetail(i.data.content[0]);
-			console.log(i.data.content[0]);
 		});
 	}, [params.groupId]);
 
@@ -157,7 +156,7 @@ const GroupDetail = () => {
 						</GroupTable>
 
 						<SpacerBottom size={20}>
-							<Link to={'/room/123'}>
+							<Link to={`/room/${params.groupId}`}>
 								<FlexContainer>
 									<CommonBtn
 										size={isMobileSize ? window.innerWidth - 20 : 300}

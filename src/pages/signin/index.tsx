@@ -30,15 +30,14 @@ const SiginIn = () => {
 				memId: email,
 				memPw: password,
 			});
-			console.log(data);
 			if (data.status === 200) {
 				store.dispatch(addToast({ isActive: true, type: 'info', content: '환영합니다.' }));
 				store.dispatch(
 					loginProcess({
 						loginStatus: 'login',
 						info: {
-							nickname: '',
-							email: '',
+							nickname: data.data.memNickname,
+							email: data.data.memEmail,
 							provider: 'web',
 							profileImage: '',
 						},

@@ -8,7 +8,7 @@ export type MatchParams = {
 	id: string;
 };
 
-export type ChattingType = { nickname?: string; content?: string };
+export type ChattingType = { nickname?: string; content?: string; status?: string };
 
 export type ChattingListType = ChattingType[];
 

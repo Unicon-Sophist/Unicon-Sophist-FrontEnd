@@ -9,8 +9,11 @@ import { Container, SpacerBottom } from 'assets/styles/global-styled';
 import styled from 'styled-components';
 import Color from 'assets/styles/color';
 import chatIcon from 'assets/img/chat-icon.png';
+import { useSelector } from 'react-redux';
+import { userInfoName } from 'store';
 
 const Room = ({ match }: RouteComponentProps<MatchParams>) => {
+	const { info } = useSelector((state) => state[userInfoName]);
 	const [users, setUsers] = useState<WebRTCUser[]>([]);
 	const [chattingList, setChattingList] = useState<ChattingListType>([]);
 	const [chattingContent, setChattingContent] = useState<string>('');
@@ -22,9 +25,8 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 	const [recentChat, setRecentChat] = useState<ChattingType>({});
 
 	const submitChatting = () => {
-		console.log(socketRef.current);
 		if (socketRef.current) {
-			socketRef.current.emit('message', 'test', chattingContent);
+			socketRef.current.emit('message', info.nickname, chattingContent);
 		}
 	};
 
@@ -42,12 +44,13 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 			if (!socketRef.current) return;
 			socketRef.current.emit('join_room', {
 				room: match.params.id,
-				email: 'sample@naver.com',
+				email: info.nickname,
 			});
+			socketRef.current.emit('message', info.nickname, '', 'in');
 		} catch (e) {
 			console.log(`getUserMedia error: ${e}`);
 		}
-	}, [match.params.id]);
+	}, [match.params.id, info.nickname]);
 
 	const createPeerConnection = useCallback((socketID: string, email: string) => {
 		try {
@@ -96,10 +99,23 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 		socketRef.current = io.connect(SOCKET_SERVER_URL);
 		getLocalStream();
 
-		socketRef.current.on('receive message', (msg: { name: string; text: string }) => {
-			setChattingContent('');
-			setRecentChat({ content: msg.text, nickname: msg.name });
-		});
+		socketRef.current.on(
+			'receive message',
+			(msg: { name: string; text: string; status: string }) => {
+				console.log(msg);
+				if (msg.status) {
+					setChattingContent('');
+					setRecentChat({
+						content: '접속 하였습니다.',
+						nickname: msg.name,
+						status: msg.status,
+					});
+				} else {
+					setChattingContent('');
+					setRecentChat({ content: msg.text, nickname: msg.name });
+				}
+			},
+		);
 
 		socketRef.current.on('all_users', (allUsers: Array<{ id: string; email: string }>) => {
 			allUsers.forEach(async (user) => {
@@ -188,6 +204,7 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 
 		return () => {
 			if (socketRef.current) {
+				socketRef.current.emit('message', info.nickname, '', 'out');
 				socketRef.current.disconnect();
 			}
 
@@ -231,6 +248,16 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 					<ChattingContainer>
 						<ChattingInner ref={chatRef}>
 							{chattingList.map((i, index) => {
+								console.log(i);
+								if (i.status === 'in') {
+									return (
+										<ChattingFirstContainer key={index + 'chatting'}>
+											<ChattingNickname>
+												{i.nickname}님이 {i.content}
+											</ChattingNickname>
+										</ChattingFirstContainer>
+									);
+								}
 								return (
 									<Chatting key={index + 'chatting'}>
 										<ChattingIconContainer>
@@ -260,6 +287,13 @@ const Room = ({ match }: RouteComponentProps<MatchParams>) => {
 };
 
 export default Room;
+
+const ChattingFirstContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+`;
 const Chatting = styled.div`
 	display: flex;
 	border-bottom: 1px solid ${Color.borderGray};
@@ -331,6 +365,8 @@ const ChattingInput = styled.input`
 	padding-right: 35px;
 	font-size: 14px;
 	background-color: transparent;
+	padding-top: 10px;
+	padding-bottom: 10px;
 `;
 const ChattingSubmitBtn = styled.input`
 	height: 30px;
