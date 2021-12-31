@@ -1,8 +1,8 @@
 {
   "name": "web",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "/",
+  "private": false,
+  "homepage": "https://unicon-sophist.github.io/Unicon-Sophist-FrontEnd/",
   "main": "public/electron.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
